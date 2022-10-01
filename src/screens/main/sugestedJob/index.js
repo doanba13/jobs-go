@@ -2,6 +2,7 @@ import React from 'react';
 import CardCarousel from 'screens/main/components/CardCarousel';
 import ScreenLayout from 'screens/main/components/layout/ScreenLayout';
 
+//
 const data = [
     {
         title: 'FrontEnd Developer',
