@@ -1,6 +1,6 @@
 import React from 'react';
-import CardCarousel from 'screens/main/components/CardCarousel';
-import ScreenLayout from 'screens/main/components/layout/ScreenLayout';
+import CardCarousel from 'screens/components/CardCarousel';
+import ScreenLayout from 'screens/components/layout/ScreenLayout';
 
 //
 const data = [
@@ -43,7 +43,7 @@ const data = [
 
 export const SuggestedJob = () => {
     return (
-        <ScreenLayout>
+        <ScreenLayout title={'Suggested Jobs'} desc={'Hey! Let\'s discover our suggested jobs for you.'}>
             <CardCarousel data={data} title={'Jobs you have experience'}/>
             <CardCarousel data={data} title={'Jobs near you'}/>
         </ScreenLayout>

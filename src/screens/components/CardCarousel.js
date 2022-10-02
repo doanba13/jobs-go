@@ -1,5 +1,5 @@
 import { Carousel, Text, TouchableOpacity, View } from 'react-native-ui-lib';
-import JobCard from 'screens/main/components/card/JobCard';
+import JobCard from 'screens/components/card/JobCard';
 import React from 'react';
 import { scaleSize } from 'utilities';
 

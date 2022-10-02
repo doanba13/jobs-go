@@ -31,3 +31,6 @@ export { default as Character1 } from './svg/character_1.svg';
 export { default as Character2 } from './svg/character 2.svg';
 export { default as Location } from './svg/Pin_alt_light.svg';
 export { default as HeaderPath } from './svg/headerPath.svg';
+export { default as User } from './svg/User.svg';
+export { default as Key } from './svg/Key.svg';
+export { default as Footer } from './svg/footer.svg';

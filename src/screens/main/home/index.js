@@ -1,10 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
-import { View, Incubator, Text, Button, Carousel, TouchableOpacity } from 'react-native-ui-lib';
+import { View, Incubator, Text, TouchableOpacity } from 'react-native-ui-lib';
 import { Search, Character1, Character2 } from 'assets';
 import { boxWithShadow, footer } from 'utilities/boxShadow';
-import CardCarousel from 'screens/main/components/CardCarousel';
+import CardCarousel from 'screens/components/CardCarousel';
 
 const { TextField } = Incubator;
 

@@ -73,6 +73,9 @@ Typography.loadTypographies({
     fs35: {
         fontSize: scaleFont(35),
     },
+    fs30: {
+        fontSize: scaleFont(30),
+    },
     fs26: {
         fontSize: scaleFont(26),
     },
