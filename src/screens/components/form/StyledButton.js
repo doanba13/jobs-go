@@ -4,11 +4,15 @@ import { StyleSheet } from 'react-native';
 import { boxWithShadow } from 'utilities/boxShadow';
 import { Fonts } from 'assets/Fonts';
 
-const StyledButton = ({ label, onPress }) => {
+const StyledButton = ({
+                          label,
+                          onPress
+                      }) => {
     return (
         <Button
-            style={style.button}
-            labelStyle={style.font} label={label}
+            style={[style.button, {}]}
+            labelStyle={style.font}
+            label={label}
             backgroundColor={'rgb(183,255,163)'}
             onPress={onPress}
         />
@@ -23,6 +27,8 @@ const style = StyleSheet.create({
         ...boxWithShadow,
         elevation: 10,
         fontStyle: 24,
+        width: '100%',
+        zIndex: 10,
     },
     font: {
         fontSize: 24,
