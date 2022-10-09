@@ -1,5 +1,3 @@
-import { LoginScreen, SignupScreen, ForgotPasswordScreen } from 'screens/auth';
-
 import {
     HomeScreen,
     SuggestedJob,
@@ -13,6 +11,7 @@ import { navigationRef } from './utils';
 import { useAuth } from 'hooks';
 import SplashScreen from 'react-native-splash-screen';
 import { DrawerContent } from './DrawerContent';
+import { LoginScreen, RegisterScreen, ForgotPassword } from 'screens/auth';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -44,18 +43,15 @@ export const ApplicationNavigator = () => {
                 </Drawer.Navigator>
             ) : (
                 <Stack.Navigator
-                    initialRouteName={'Suggest'}
+                    initialRouteName={'ForgotPassword'}
                     screenOptions={{ headerShown: false }}
                 >
                     <React.Fragment>
                         <Drawer.Screen name="Home" component={HomeScreen}/>
                         <Drawer.Screen name="Suggest" component={SuggestedJob}/>
-                        <Stack.Screen name="Login" component={LoginScreen}/>
-                        <Stack.Screen name="Signup" component={SignupScreen}/>
-                        <Stack.Screen
-                            name="ForgotPassword"
-                            component={ForgotPasswordScreen}
-                        />
+                        <Drawer.Screen name="Login" component={LoginScreen}/>
+                        <Drawer.Screen name="Register" component={RegisterScreen}/>
+                        <Drawer.Screen name="ForgotPassword" component={ForgotPassword}/>
                     </React.Fragment>
                 </Stack.Navigator>
             )}

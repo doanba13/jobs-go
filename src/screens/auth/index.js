@@ -1,5 +1,3 @@
-import { LoginScreen } from './LoginScreen';
-import { SignupScreen } from './SignupScreen';
-import { ForgotPasswordScreen } from './ForgotPasswordScreen';
-
-export { LoginScreen, SignupScreen, ForgotPasswordScreen };
+export * from './loginScreen';
+export * from './registerScreen';
+export * from './forgotPassword';
