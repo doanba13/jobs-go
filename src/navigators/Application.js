@@ -1,4 +1,5 @@
 import {
+    Catalog,
     HomeScreen, JobDetail, SearchFilter, SearchResult,
     SuggestedJob,
 } from 'screens/main';
@@ -43,7 +44,7 @@ export const ApplicationNavigator = () => {
                 </Drawer.Navigator>
             ) : (
                 <Stack.Navigator
-                    initialRouteName={'JobDetail'}
+                    initialRouteName={'Catalog'}
                     screenOptions={{ headerShown: false }}
                 >
                     <React.Fragment>
@@ -55,6 +56,7 @@ export const ApplicationNavigator = () => {
                         <Drawer.Screen name="SearchResult" component={SearchResult}/>
                         <Drawer.Screen name="SearchFilter" component={SearchFilter}/>
                         <Drawer.Screen name="JobDetail" component={JobDetail}/>
+                        <Drawer.Screen name="Catalog" component={Catalog}/>
                     </React.Fragment>
                 </Stack.Navigator>
             )}

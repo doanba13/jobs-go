@@ -1,16 +1,8 @@
 import { Alert } from 'react-native';
 import {
-    Person0,
-    Person1,
-    Person2,
-    Person3,
-    Person4,
-    Person5,
-    Person6,
-    Person7,
-    Person8,
-    Person9,
-    Person10,
+    Catalog1,
+    Catalog2,
+    Catalog3
 } from 'assets';
 import React from 'react';
 
@@ -29,20 +21,12 @@ export const getInitials = string => {
     return initials;
 };
 
-export const randomPersonIcon = () => {
-    const personIcons = [
-        <Person0 />,
-        <Person1 />,
-        <Person2 />,
-        <Person3 />,
-        <Person4 />,
-        <Person5 />,
-        <Person6 />,
-        <Person7 />,
-        <Person8 />,
-        <Person9 />,
-        <Person10 />,
+export const randomCatalog = () => {
+    const catalogIcons = [
+        Catalog3,
+        Catalog2,
+        Catalog1,
     ];
-    const randomIndex = Math.floor(Math.random() * personIcons.length);
-    return personIcons[randomIndex];
+    const randomIndex = Math.floor(Math.random() * catalogIcons.length);
+    return catalogIcons[randomIndex];
 };
