@@ -1,5 +1,5 @@
 import {
-    HomeScreen,
+    HomeScreen, SearchResult,
     SuggestedJob,
 } from 'screens/main';
 import React, { useEffect } from 'react';
@@ -43,7 +43,7 @@ export const ApplicationNavigator = () => {
                 </Drawer.Navigator>
             ) : (
                 <Stack.Navigator
-                    initialRouteName={'ForgotPassword'}
+                    initialRouteName={'SearchResult'}
                     screenOptions={{ headerShown: false }}
                 >
                     <React.Fragment>
@@ -52,6 +52,7 @@ export const ApplicationNavigator = () => {
                         <Drawer.Screen name="Login" component={LoginScreen}/>
                         <Drawer.Screen name="Register" component={RegisterScreen}/>
                         <Drawer.Screen name="ForgotPassword" component={ForgotPassword}/>
+                        <Drawer.Screen name="SearchResult" component={SearchResult}/>
                     </React.Fragment>
                 </Stack.Navigator>
             )}

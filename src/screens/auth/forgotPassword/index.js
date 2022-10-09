@@ -48,7 +48,7 @@ export const ForgotPassword = () => {
                         name="email"
                         rules={{
                             required: 'Email is required!',
-                            maxLength: { value: 25, message: 'Email too long!' },
+                            maxLength: { value: 50, message: 'Email too long!' },
                             validate: email => {
                                 if (!isValidEmail(email)) {
                                     return 'Email invalid!';
