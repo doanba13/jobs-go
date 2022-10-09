@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         right: -20,
     },
     header: {
-        height: '22%',
+        height: '20%',
         borderBottomLeftRadius: 30,
         borderBottomRightRadius: 30,
         backgroundColor: 'rgba(71, 220, 67, 0.34)',
