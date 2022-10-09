@@ -35,3 +35,4 @@ export { default as User } from './svg/User.svg';
 export { default as Key } from './svg/Key.svg';
 export { default as Footer } from './svg/footer.svg';
 export { default as Reddit } from './svg/reddit.svg';
+export { default as Character3 } from './svg/character 3.svg';

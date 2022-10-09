@@ -3,10 +3,19 @@ import { Text, View } from 'react-native-ui-lib';
 import { Footer, HeaderPath } from 'assets';
 import { StyleSheet } from 'react-native';
 
-const ScreenLayout = ({ children, title, desc, contentHeight }) => {
+const ScreenLayout = ({
+                          children,
+                          title,
+                          desc,
+                          contentHeight,
+                          notFooter
+                      }) => {
     return (
         <View flex spread>
-            <View style={{ height: '93%', zIndex: 1 }}>
+            <View style={{
+                height: contentHeight,
+                zIndex: 1
+            }}>
                 <View style={styles.header}>
                     <HeaderPath style={styles.path}/>
                     <Text marginB-5 fs24 textBlack font-extraBold>{title}</Text>
@@ -14,7 +23,7 @@ const ScreenLayout = ({ children, title, desc, contentHeight }) => {
                 </View>
                 {children}
             </View>
-            <Footer style={styles.footer}/>
+            {!notFooter && <Footer style={styles.footer}/>}
         </View>
     );
 };
