@@ -6,6 +6,7 @@ import { User, Key } from 'assets';
 import StyledInput from 'screens/components/form/StyledInput';
 import StyledButton from 'screens/components/form/StyledButton';
 import { Controller, useForm } from 'react-hook-form';
+import { useNavigation } from '@react-navigation/native';
 
 const isValidEmail = email =>
     // eslint-disable-next-line no-useless-escape
@@ -14,6 +15,8 @@ const isValidEmail = email =>
     );
 
 export const ForgotPassword = () => {
+    const navi = useNavigation();
+
     const {
         handleSubmit,
         control,
@@ -27,7 +30,7 @@ export const ForgotPassword = () => {
     };
 
     return (
-        <ScreenLayout title={'Job Go!'} desc={'Finding your dream job.'}>
+        <ScreenLayout title={'Job Go!'} desc={'Finding your dream job.'} contentHeight={'100%'}>
             <View paddingH-20 paddingT-20>
                 <Text fs30 textBlack font-extraBold>
                     Forgot password
@@ -35,7 +38,13 @@ export const ForgotPassword = () => {
                 <View paddingT-15 paddingB-40 width={'100%'}>
                     <Controller
                         control={control}
-                        render={({ field: { onChange, onBlur, value } }) => (
+                        render={({
+                                     field: {
+                                         onChange,
+                                         onBlur,
+                                         value
+                                     }
+                                 }) => (
                             <StyledInput
                                 error={errors.email && errors.email.message}
                                 Icon={User}
@@ -48,7 +57,10 @@ export const ForgotPassword = () => {
                         name="email"
                         rules={{
                             required: 'Email is required!',
-                            maxLength: { value: 50, message: 'Email too long!' },
+                            maxLength: {
+                                value: 50,
+                                message: 'Email too long!'
+                            },
                             validate: email => {
                                 if (!isValidEmail(email)) {
                                     return 'Email invalid!';
@@ -57,7 +69,7 @@ export const ForgotPassword = () => {
                         }}
                     />
                     <View>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navi.navigate('Login')}>
                             <Text style={style.navigateText} marginT-5 marginL-40 fs14 textBlack font-light>
                                 Log in!
                             </Text>

@@ -6,14 +6,16 @@ import { Fonts } from 'assets/Fonts';
 
 const StyledButton = ({
                           label,
-                          onPress
+                          onPress,
+                          bg,
+                          color
                       }) => {
     return (
         <Button
             style={[style.button, {}]}
-            labelStyle={style.font}
+            labelStyle={[style.font, color]}
             label={label}
-            backgroundColor={'rgb(183,255,163)'}
+            backgroundColor={bg || 'rgb(183,255,163)'}
             onPress={onPress}
         />
     );

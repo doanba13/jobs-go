@@ -7,6 +7,24 @@ import ScreenLayout from 'screens/components/layout/ScreenLayout';
 import React, { useRef } from 'react';
 import { boxWithShadow } from 'utilities/boxShadow';
 import { useForm, Controller } from 'react-hook-form';
+import StyledDatePicker from 'screens/components/form/StyledDatePicker';
+import { useNavigation } from '@react-navigation/native';
+
+const formatDate = (date) => {
+    const d = new Date(date);
+    let month = '' + (d.getMonth() + 1);
+    let day = '' + d.getDate();
+    const year = d.getFullYear();
+
+    if (month.length < 2) {
+        month = '0' + month;
+    }
+    if (day.length < 2) {
+        day = '0' + day;
+    }
+
+    return [year, month, day].join('-');
+}
 
 const isValidEmail = email =>
     // eslint-disable-next-line no-useless-escape
@@ -15,6 +33,8 @@ const isValidEmail = email =>
     );
 
 export const RegisterScreen = () => {
+    const navi = useNavigation()
+
     const {
         handleSubmit,
         control,
@@ -24,56 +44,77 @@ export const RegisterScreen = () => {
     } = useForm();
 
     const onSubmit = values => {
-        console.log(values);
+        console.log({
+            ...values,
+            dob: formatDate(values.dob)
+        });
     };
 
     const password = useRef({});
     password.current = watch('password', '');
 
     return (
-        <ScreenLayout title={'Job Go!'} desc={'Finding your dream job.'} contentHeight={'90%'}>
+        <ScreenLayout title={'Job Go!'} desc={'Finding your dream job.'} contentHeight={'100%'}>
             <ScrollView>
                 <View width={'100%'} paddingB-80>
                     <View paddingH-20 paddingT-20>
                         <Text fs30 textBlack font-extraBold>
                             Register
                         </Text>
-                        <View paddingT-15 paddingB-30 width={'100%'}>
+                        <View paddingT-15 paddingB-20 width={'100%'}>
                             <Controller
                                 control={control}
-                                render={({ field: { onChange, onBlur, value } }) => (
+                                render={({
+                                             field: {
+                                                 onChange,
+                                                 onBlur,
+                                                 value
+                                             }
+                                         }) => (
                                     <StyledInput
-                                        error={errors.fullname && errors.fullname.message}
+                                        error={errors.first_name && errors.first_name.message}
                                         Icon={User}
-                                        placeholder={'Full name'}
+                                        placeholder={'First name'}
                                         onChange={onChange}
                                         onBlur={onBlur}
                                         value={value}
                                     />
                                 )}
-                                name="fullname"
-                                rules={{ required: 'Full name is required!' }}
+                                name="first_name"
+                                rules={{ required: 'First name is required!' }}
                             />
 
                             <Controller
                                 control={control}
-                                render={({ field: { onChange, onBlur, value } }) => (
+                                render={({
+                                             field: {
+                                                 onChange,
+                                                 onBlur,
+                                                 value
+                                             }
+                                         }) => (
                                     <StyledInput
-                                        error={errors.username && errors.username.message}
+                                        error={errors.last_name && errors.last_name.message}
                                         Icon={User}
-                                        placeholder={'Username'}
+                                        placeholder={'Last Name'}
                                         onChange={onChange}
                                         onBlur={onBlur}
                                         value={value}
                                     />
                                 )}
-                                name="username"
-                                rules={{ required: 'Username is required!' }}
+                                name="last_name"
+                                rules={{ required: 'Last name is required!' }}
                             />
 
                             <Controller
                                 control={control}
-                                render={({ field: { onChange, onBlur, value } }) => (
+                                render={({
+                                             field: {
+                                                 onChange,
+                                                 onBlur,
+                                                 value
+                                             }
+                                         }) => (
                                     <StyledInput
                                         error={errors.email && errors.email.message}
                                         Icon={User}
@@ -86,7 +127,10 @@ export const RegisterScreen = () => {
                                 name="email"
                                 rules={{
                                     required: 'Email is required!',
-                                    maxLength: { value: 25, message: 'Email too long!' },
+                                    maxLength: {
+                                        value: 25,
+                                        message: 'Email too long!'
+                                    },
                                     validate: email => {
                                         if (!isValidEmail(email)) {
                                             return 'Email invalid!';
@@ -94,33 +138,15 @@ export const RegisterScreen = () => {
                                     },
                                 }}
                             />
-
                             <Controller
                                 control={control}
-                                render={({ field: { onChange, onBlur, value } }) => (
-                                    <StyledInput
-                                        error={errors.age && errors.age.message}
-                                        Icon={User}
-                                        placeholder={'Age'}
-                                        onChange={onChange}
-                                        onBlur={onBlur}
-                                        value={value}
-                                    />
-                                )}
-                                name="age"
-                                rules={{
-                                    required: 'Age is required!',
-                                    // valueAsNumber: true,
-                                    // validate: (age) => {
-                                    //     if (+age < 10) {
-                                    //         return 'Invalid Age';
-                                    //     }
-                                    // },
-                                }}
-                            />
-                            <Controller
-                                control={control}
-                                render={({ field: { onChange, onBlur, value } }) => (
+                                render={({
+                                             field: {
+                                                 onChange,
+                                                 onBlur,
+                                                 value
+                                             }
+                                         }) => (
                                     <StyledInput
                                         type={'password'}
                                         error={errors.password && errors.password.message}
@@ -146,7 +172,13 @@ export const RegisterScreen = () => {
                             />
                             <Controller
                                 control={control}
-                                render={({ field: { onChange, onBlur, value } }) => (
+                                render={({
+                                             field: {
+                                                 onChange,
+                                                 onBlur,
+                                                 value
+                                             }
+                                         }) => (
                                     <StyledInput
                                         type={'password'}
                                         error={errors.confirmPassword && errors.confirmPassword.message}
@@ -165,11 +197,35 @@ export const RegisterScreen = () => {
                                         'Password not match!',
                                 }}
                             />
+                            <Controller
+                                control={control}
+                                render={({
+                                             field: {
+                                                 onChange,
+                                                 onBlur,
+                                                 value
+                                             }
+                                         }) => (
+                                    <StyledDatePicker
+                                        error={errors.dob && errors.dob.message}
+                                        Icon={User}
+                                        placeholder={'Age'}
+                                        onChange={onChange}
+                                        onBlur={onBlur}
+                                        value={value}
+                                    />
+                                )}
+                                name="dob"
+                                rules={{ required: 'Age is required!' }}
+                            />
                             <View>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={() => navi.navigate('Login')}>
                                     <Text
-                                        style={{ width: '88%', textAlign: 'right' }}
-                                        marginT-5
+                                        style={{
+                                            width: '88%',
+                                            textAlign: 'right',
+                                            marginTop: -20,
+                                        }}
                                         marginL-40
                                         fs14
                                         textBlack
@@ -180,6 +236,7 @@ export const RegisterScreen = () => {
                                 </TouchableOpacity>
                             </View>
                         </View>
+
                         <StyledButton onPress={handleSubmit(onSubmit)} label={'Register'}/>
                     </View>
                 </View>
