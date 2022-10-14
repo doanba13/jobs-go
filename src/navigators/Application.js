@@ -1,4 +1,5 @@
 import {
+    AppliedJobs,
     Catalog,
     HomeScreen, JobDetail, SearchFilter, SearchResult,
     SuggestedJob,
@@ -7,15 +8,16 @@ import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StatusBar } from 'react-native';
 import { navigationRef } from './utils';
 import { useAuth } from 'hooks';
 import SplashScreen from 'react-native-splash-screen';
-import { DrawerContent } from './DrawerContent';
 import { LoginScreen, RegisterScreen, ForgotPassword } from 'screens/auth';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator()
 
 // @refresh reset
 export const ApplicationNavigator = () => {
@@ -28,38 +30,36 @@ export const ApplicationNavigator = () => {
     return (
         <NavigationContainer ref={navigationRef}>
             <StatusBar barStyle="light-content"/>
-
-            {isLogged ? (
-                <Drawer.Navigator
-                    screenOptions={{
-                        headerShown: false,
-                        drawerStyle: {
-                            backgroundColor: '#505161',
-                            width: 240,
-                        },
-                    }}
-                    drawerContent={props => <DrawerContent {...props} />}
-                >
-
-                </Drawer.Navigator>
-            ) : (
-                <Stack.Navigator
-                    initialRouteName={'Catalog'}
-                    screenOptions={{ headerShown: false }}
-                >
-                    <React.Fragment>
-                        <Drawer.Screen name="Home" component={HomeScreen}/>
-                        <Drawer.Screen name="Suggest" component={SuggestedJob}/>
-                        <Drawer.Screen name="Login" component={LoginScreen}/>
-                        <Drawer.Screen name="Register" component={RegisterScreen}/>
-                        <Drawer.Screen name="ForgotPassword" component={ForgotPassword}/>
-                        <Drawer.Screen name="SearchResult" component={SearchResult}/>
-                        <Drawer.Screen name="SearchFilter" component={SearchFilter}/>
-                        <Drawer.Screen name="JobDetail" component={JobDetail}/>
-                        <Drawer.Screen name="Catalog" component={Catalog}/>
+            <Stack.Navigator
+                initialRouteName={'Home'}
+                screenOptions={{ headerShown: false }}
+            >
+                {isLogged
+                    ? <React.Fragment>
+                        <Stack.Screen name="Suggest" component={SuggestedJob}/>
+                        <Stack.Screen name="Home" component={TabBarNavigation}/>
+                        <Stack.Screen name="SearchResult" component={SearchResult}/>
+                        <Stack.Screen name="SearchFilter" component={SearchFilter}/>
+                        <Stack.Screen name="JobDetail" component={JobDetail}/>
                     </React.Fragment>
-                </Stack.Navigator>
-            )}
+                    : <React.Fragment>
+                        <Stack.Screen name="Login" component={LoginScreen}/>
+                        <Stack.Screen name="Register" component={RegisterScreen}/>
+                        <Stack.Screen name="ForgotPassword" component={ForgotPassword}/>
+                    </React.Fragment>
+                }
+            </Stack.Navigator>
         </NavigationContainer>
     );
 };
+
+const TabBarNavigation = () => {
+    return (
+        <Tab.Navigator initialRouteName={'Home'} screenOptions={{ headerShown: false }}>
+            <Tab.Screen name="Home" component={HomeScreen}/>
+            <Tab.Screen name="AppliedJobs" component={AppliedJobs}/>
+            <Tab.Screen name="CV" component={Catalog}/>
+            <Tab.Screen name="Profile" component={AppliedJobs}/>
+        </Tab.Navigator>
+    )
+}

@@ -1,10 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { View, Incubator, Text, TouchableOpacity } from 'react-native-ui-lib';
 import { Search, Character1, Character2 } from 'assets';
 import { boxWithShadow, footer } from 'utilities/boxShadow';
 import CardCarousel from 'screens/components/CardCarousel';
+import { useNavigation } from '@react-navigation/native';
 
 const { TextField } = Incubator;
 
@@ -48,11 +49,16 @@ const data = [
 
 export const HomeScreen = ({ navigation }) => {
     const { t } = useTranslation();
+    const navi = useNavigation()
+
     return (
-        <View style={{ backgroundColor: '#EFFCFF', height: '100%' }}>
+        <View style={{
+            backgroundColor: '#EFFCFF',
+            height: '100%',
+            position: 'relative'
+        }}>
             <View
                 style={{
-                    height: '28%',
                     paddingHorizontal: '5%',
                     paddingTop: 50,
                     // backgroundColor: 'green',
@@ -63,19 +69,21 @@ export const HomeScreen = ({ navigation }) => {
                 <Text fs20 textBlack font-medium>
                     Have a good day!
                 </Text>
-                <View marginT-40 style={{ width: '100%', position: 'relative' }}>
+                <View marginT-40 style={{
+                    width: '100%',
+                    position: 'relative'
+                }}>
                     <Character1 style={style.character}/>
-                    <Search style={style.styledIcon}/>
-                    <TextField
-                        placeholder={'Lets find your dream job!'}
-                        placeholderTextColor={'rgba(0,0,0,0.5)'}
-                        style={style.styledInput}
-                    />
+                    <TouchableOpacity onPress={() => navi.navigate('SearchFilter')}>
+                        <Search style={style.styledIcon}/>
+                        <View style={style.styledInput}>
+                            <Text>Let's find your dream job!</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
             <CardCarousel data={data} title={'Feature jobs'}/>
             <View style={{
-                height: '5%',
                 paddingHorizontal: '3%',
             }}>
                 <Text textBlack fs20 font-medium>
@@ -83,7 +91,6 @@ export const HomeScreen = ({ navigation }) => {
                 </Text>
             </View>
             <View style={{
-                height: '30%',
                 paddingHorizontal: '5%',
                 paddingVertical: 10,
                 // backgroundColor: 'red',
@@ -93,13 +100,19 @@ export const HomeScreen = ({ navigation }) => {
                     <View style={{ width: '60%' }}>
                         <Text fs22 textBlack font-bold>A lot of job is waiting for you to discover!</Text>
                     </View>
-                    <TouchableOpacity style={{ marginTop: 25, width: '40%' }}
-                                      backgroundColor={'transparent'}>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: 25,
+                            width: '40%'
+                        }}
+                        backgroundColor={'transparent'}
+                        onPress={() => navi.navigate('Suggest')}
+                    >
                         <Text color={'#94C9A9'} fs14 font-light>View more</Text>
                     </TouchableOpacity>
                 </View>
-                <View flex style={suggested.footer}/>
             </View>
+            <View style={suggested.footer}/>
         </View>
     );
 };
@@ -107,19 +120,18 @@ export const HomeScreen = ({ navigation }) => {
 const suggested = StyleSheet.create({
     container: {
         width: '100%',
-        height: '80%',
         backgroundColor: '#fff',
         borderRadius: 12,
         ...boxWithShadow,
         elevation: 12,
         paddingHorizontal: 10,
-        paddingVertical: 10,
+        paddingVertical: 14,
         zIndex: 2,
     },
     character: {
         position: 'absolute',
         right: -50,
-        bottom: -50,
+        bottom: -51,
     },
     footer,
 });
@@ -134,8 +146,7 @@ const style = StyleSheet.create({
         backgroundColor: '#fff',
         ...boxWithShadow,
         elevation: 12,
-        paddingTop: 6,
-        paddingBottom: 6,
+        paddingVertical: 10,
         zIndex: 1,
     },
     styledIcon: {

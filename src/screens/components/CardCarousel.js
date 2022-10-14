@@ -2,8 +2,15 @@ import { Carousel, Text, TouchableOpacity, View } from 'react-native-ui-lib';
 import JobCard from 'screens/components/card/JobCard';
 import React from 'react';
 import { scaleSize } from 'utilities';
+import { useNavigation } from '@react-navigation/native';
 
-const CardCarousel = ({ data, title }) => {
+const CardCarousel = ({
+                          data,
+                          title,
+                          to
+                      }) => {
+    const navigate = useNavigation();
+
     return (
         <>
             <View style={{
@@ -12,10 +19,10 @@ const CardCarousel = ({ data, title }) => {
                 paddingHorizontal: '3%',
             }}>
                 <View flex row spread centerV>
-                    <Text textBlack fs18 font-medium>
+                    <Text textBlack fs20 font-medium>
                         {title}
                     </Text>
-                    <TouchableOpacity backgroundColor={'transparent'}>
+                    <TouchableOpacity backgroundColor={'transparent'} onPress={() => navigate.navigate(to)}>
                         <Text textBlack fs12 font-light>View more</Text>
                     </TouchableOpacity>
                 </View>

@@ -44,7 +44,10 @@ export const Catalog = () => {
         <ScreenLayout title={'Catalog'} desc={'Hey! lets discover our job catalogs'} notFooter contentHeight={'100%'}>
             <View paddingV-20>
                 <GridList
-                    contentContainerStyle={{ paddingBottom: 20 }}
+                    contentContainerStyle={{
+                        paddingBottom: 20,
+                        paddingTop: 10
+                    }}
                     data={data}
                     renderItem={({ item }) => (
                         <TouchableOpacity key={item.id}>
@@ -72,7 +75,7 @@ const CatalogCard = (
     return (
         <View row centerV style={styles.container}>
             <Icon/>
-            <View marginL-5>
+            <View marginL-6>
                 <Text textBlack font-bold>{title}</Text>
                 <Text fs12 black50>{jobCount}+ jobs</Text>
             </View>

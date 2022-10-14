@@ -1,26 +1,39 @@
 import { Text, View } from 'react-native-ui-lib';
 import { Location } from 'assets';
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { boxWithShadow } from 'utilities/boxShadow';
+import { useNavigation } from '@react-navigation/native';
 
 const JobCard = ({ jobInfo }) => {
-    const { title, tags, company, location, salary } = jobInfo;
+    const {
+        title,
+        tags,
+        company,
+        location,
+        salary
+    } = jobInfo;
+
+    const navi = useNavigation()
+
     return (
-        <View style={jobCard.container}>
-            <Text paddingB-5 textBlack fs22 font-bold marginB-8>{title}</Text>
-            <Text black50 fs20 font-bold>{company}</Text>
-            <View paddingV-10 flex row>
-                {tags.map((tag, i) => <Text key={i} fs10 style={jobCard.categoryTag} marginR-10 textBlack>{tag}</Text>)}
-            </View>
-            <View flex row spread centerV>
-                <View marginT-2 flex row centerV>
-                    <Location/>
-                    <Text marginL-5 marginB-2 fs12 textBlack>{location}</Text>
+        <TouchableWithoutFeedback onPress={() => navi.navigate('JobDetail')}>
+            <View style={jobCard.container}>
+                <Text paddingB-5 textBlack fs22 font-bold marginB-8>{title}</Text>
+                <Text black50 fs20 font-bold>{company}</Text>
+                <View paddingV-10 flex row>
+                    {tags.map((tag, i) => <Text key={i} fs10 style={jobCard.categoryTag} marginR-10
+                                                textBlack>{tag}</Text>)}
                 </View>
-                <Text fs14 font-bold textBlack>{salary}$/month</Text>
+                <View flex row spread centerV>
+                    <View marginT-2 flex row centerV>
+                        <Location/>
+                        <Text marginL-5 marginB-2 fs12 textBlack>{location}</Text>
+                    </View>
+                    <Text fs14 font-bold textBlack>{salary}$/month</Text>
+                </View>
             </View>
-        </View>
+        </TouchableWithoutFeedback>
     );
 };
 

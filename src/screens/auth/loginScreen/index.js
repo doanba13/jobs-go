@@ -6,8 +6,14 @@ import { User, Key } from 'assets';
 import StyledInput from 'screens/components/form/StyledInput';
 import StyledButton from 'screens/components/form/StyledButton';
 import { Controller, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { setUser } from 'store/auth';
+import { useNavigation } from '@react-navigation/native';
 
 export const LoginScreen = () => {
+    const dispatch = useDispatch();
+    const navi = useNavigation()
+
     const {
         handleSubmit,
         control,
@@ -18,6 +24,11 @@ export const LoginScreen = () => {
 
     const onSubmit = values => {
         console.log(values);
+        dispatch(setUser({
+            username: 'bastol',
+            email: 'ba.nguyendoan133@gmail.com'
+        }))
+        setTimeout(() => navi.navigate('Home'), 500)
     };
 
     return (
@@ -29,7 +40,13 @@ export const LoginScreen = () => {
                 <View paddingT-15 paddingB-40 width={'100%'}>
                     <Controller
                         control={control}
-                        render={({ field: { onChange, onBlur, value } }) => (
+                        render={({
+                                     field: {
+                                         onChange,
+                                         onBlur,
+                                         value
+                                     }
+                                 }) => (
                             <StyledInput
                                 error={errors.username && errors.username.message}
                                 Icon={User}
@@ -42,13 +59,25 @@ export const LoginScreen = () => {
                         name="username"
                         rules={{
                             required: 'Username is required!',
-                            minLength: { value: 8, message: 'Username must have more than 8 character!' },
-                            maxLength: { value: 20, message: 'Username too long!' },
+                            minLength: {
+                                value: 8,
+                                message: 'Username must have more than 8 character!'
+                            },
+                            maxLength: {
+                                value: 20,
+                                message: 'Username too long!'
+                            },
                         }}
                     />
                     <Controller
                         control={control}
-                        render={({ field: { onChange, onBlur, value } }) => (
+                        render={({
+                                     field: {
+                                         onChange,
+                                         onBlur,
+                                         value
+                                     }
+                                 }) => (
                             <StyledInput
                                 error={errors.password && errors.password.message}
                                 Icon={User}
@@ -61,17 +90,23 @@ export const LoginScreen = () => {
                         name="password"
                         rules={{
                             required: 'Password is required!',
-                            minLength: { value: 8, message: 'Password must have more than 8 character!' },
-                            maxLength: { value: 20, message: 'Password too long!' },
+                            minLength: {
+                                value: 8,
+                                message: 'Password must have more than 8 character!'
+                            },
+                            maxLength: {
+                                value: 20,
+                                message: 'Password too long!'
+                            },
                         }}
                     />
                     <View>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navi.navigate('ForgotPassword')}>
                             <Text style={style.navigateText} marginT-5 marginL-40 fs14 textBlack font-light>
                                 Forgot password?
                             </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navi.navigate('Register')}>
                             <Text style={style.navigateText} marginT-5 marginL-40 fs14 textBlack font-light>
                                 Create new account!
                             </Text>

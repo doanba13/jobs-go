@@ -1,8 +1,9 @@
 import React from 'react'
 import { Text, View } from 'react-native-ui-lib';
 import { Location, Reddit } from 'assets';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { boxWithShadow } from 'utilities/boxShadow';
+import { useNavigation } from '@react-navigation/native';
 
 const WideJobCard = ({ detail }) => {
     const {
@@ -14,8 +15,10 @@ const WideJobCard = ({ detail }) => {
         duration
     } = detail
 
+    const navi = useNavigation()
+
     return (
-        <TouchableOpacity>
+        <TouchableWithoutFeedback onPress={() => navi.navigate('JobDetail')}>
             <View style={cardStyle.container}>
                 <Reddit style={cardStyle.logo}/>
                 <Text paddingT-10 textBlack fs14 font-bold>{title}</Text>
@@ -33,7 +36,7 @@ const WideJobCard = ({ detail }) => {
                 </View>
                 <Text style={cardStyle.timeLeft} fs12 textBlack>{duration} days left!</Text>
             </View>
-        </TouchableOpacity>
+        </TouchableWithoutFeedback>
     )
 }
 
