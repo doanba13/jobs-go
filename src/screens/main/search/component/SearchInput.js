@@ -10,7 +10,7 @@ const SearchInput = ({ placeholder }) => {
         <View marginH-20 style={{
             width: '90%',
             position: 'absolute',
-            top: 140,
+            top: 120,
             zIndex: 10,
         }}>
             <TextField

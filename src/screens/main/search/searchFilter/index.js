@@ -6,6 +6,7 @@ import { ScrollView } from 'react-native';
 import FilterInput from 'screens/main/search/component/FilterInput';
 import { Controller, useForm } from 'react-hook-form';
 import StyledButton from 'screens/components/form/StyledButton';
+import { useNavigation } from '@react-navigation/native';
 
 const data = [
     {
@@ -27,6 +28,7 @@ const data = [
 ]
 
 export const SearchFilter = () => {
+    const navi = useNavigation()
     const {
         handleSubmit,
         control,
@@ -34,13 +36,14 @@ export const SearchFilter = () => {
 
     const onSubmit = values => {
         console.log(values);
+        navi.navigate('SearchResult')
     };
 
     return (
         <ScreenLayout title={'Search Filter'} desc={'Find your dream job'} notFooter contentHeight={'100%'}>
             <SearchInput placeholder={'UI/UI Designer'}/>
             <ScrollView>
-                <View width={'100%'} paddingT-20 paddingB-80 paddingH-10>
+                <View width={'100%'} marginT-15 paddingT-20 paddingB-80 paddingH-10>
                     <Text textBlack fs18 font-medium>
                         Tell us types of your job 😤
                     </Text>
