@@ -31,6 +31,7 @@
         "react-i18next": "^11.16.8",
         "react-native": "0.68.1",
         "react-native-circular-progress-indicator": "^4.1.1",
+        "react-native-date-picker": "^4.2.5",
         "react-native-flipper": "^0.144.0",
         "react-native-gesture-handler": "^2.4.1",
         "react-native-linear-gradient": "^2.5.6",

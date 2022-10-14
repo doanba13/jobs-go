@@ -1,6 +1,8 @@
 import React from 'react';
 import CardCarousel from 'screens/components/CardCarousel';
 import ScreenLayout from 'screens/components/layout/ScreenLayout';
+import { ScrollView } from 'react-native';
+import { View } from 'react-native-ui-lib';
 
 //
 const data = [
@@ -43,9 +45,16 @@ const data = [
 
 export const SuggestedJob = () => {
     return (
-        <ScreenLayout title={'Suggested Jobs'} desc={'Hey! Let\'s discover our suggested jobs for you.'}>
-            <CardCarousel data={data} title={'Jobs you have experience'}/>
-            <CardCarousel data={data} title={'Jobs near you'}/>
+        <ScreenLayout title={'Suggested Jobs'} desc={'Hey! Let\'s discover our suggested jobs for you.'}
+                      contentHeight={'100%'}>
+            <ScrollView>
+                <View paddingB-200>
+                    <CardCarousel data={data} title={'Jobs you have experience'}/>
+                    <CardCarousel data={data} title={'Jobs near you'}/>
+                    <CardCarousel data={data} title={'Jobs near you'}/>
+                    <CardCarousel data={data} title={'Jobs near you'}/>
+                </View>
+            </ScrollView>
         </ScreenLayout>
     );
 };

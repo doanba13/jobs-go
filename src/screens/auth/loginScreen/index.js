@@ -32,7 +32,7 @@ export const LoginScreen = () => {
     };
 
     return (
-        <ScreenLayout title={'Job Go!'} desc={'Finding your dream job.'}>
+        <ScreenLayout title={'Job Go!'} desc={'Finding your dream job.'} contentHeight={'100%'}>
             <View paddingH-20 paddingT-20>
                 <Text fs30 textBlack font-extraBold>
                     Log in

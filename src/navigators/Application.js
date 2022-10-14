@@ -1,7 +1,7 @@
 import {
     AppliedJobs,
-    Catalog,
-    HomeScreen, JobDetail, SearchFilter, SearchResult,
+    Catalog, FavoriteJob,
+    HomeScreen, JobDetail, ProfileManager, SearchFilter, SearchResult,
     SuggestedJob,
 } from 'screens/main';
 import React, { useEffect } from 'react';
@@ -41,6 +41,7 @@ export const ApplicationNavigator = () => {
                         <Stack.Screen name="SearchResult" component={SearchResult}/>
                         <Stack.Screen name="SearchFilter" component={SearchFilter}/>
                         <Stack.Screen name="JobDetail" component={JobDetail}/>
+                        <Stack.Screen name="FavoriteJob" component={FavoriteJob}/>
                     </React.Fragment>
                     : <React.Fragment>
                         <Stack.Screen name="Login" component={LoginScreen}/>
@@ -59,7 +60,7 @@ const TabBarNavigation = () => {
             <Tab.Screen name="Home" component={HomeScreen}/>
             <Tab.Screen name="AppliedJobs" component={AppliedJobs}/>
             <Tab.Screen name="CV" component={Catalog}/>
-            <Tab.Screen name="Profile" component={AppliedJobs}/>
+            <Tab.Screen name="Profile" component={ProfileManager}/>
         </Tab.Navigator>
     )
 }
