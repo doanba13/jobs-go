@@ -1,5 +1,5 @@
 export const Config = {
-    API_URL: 'http://localhost:8089',
+    API_URL: 'http://10.0.2.2:8000/api',
     NUM_WORDS_PREVIEW: 5,
     REVIEW_STATUS_LOGS: {
         FINISHED: 'finished',

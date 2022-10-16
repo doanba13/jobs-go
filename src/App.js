@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { KeyboardAvoidingView } from 'react-native';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { store, persistor } from 'store';
@@ -9,6 +8,8 @@ import './translations';
 // ui config
 import './theme/FoundationConfig';
 import './theme/ComponentsConfig';
+import { QueryClientProvider } from 'react-query';
+import { queryClient } from 'libs';
 
 export const App = () => (
     <Provider store={store}>
@@ -20,7 +21,9 @@ export const App = () => (
          * @see https://github.com/rt2zz/redux-persist/blob/master/docs/PersistGate.md
          */}
         <PersistGate persistor={persistor}>
-            <ApplicationNavigator/>
+            <QueryClientProvider client={queryClient}>
+                <ApplicationNavigator/>
+            </QueryClientProvider>
         </PersistGate>
     </Provider>
 );

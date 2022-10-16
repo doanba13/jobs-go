@@ -21,7 +21,7 @@ export const ProfileManager = () => {
             </View>
             <ProfileOption title={'Personal Data'} icon={<UserFill/>}/>
             <ProfileOption title={'Favorite Jobs'} icon={<Heart/>} navigateTo={'FavoriteJob'}/>
-            <ProfileOption title={'About Us'} icon={<AboutUs/>}/>
+            <ProfileOption title={'About Us'} icon={<AboutUs/>} navigateTo={'AboutUs'}/>
             <ProfileOption title={'Buy Premium'} icon={<Heart/>}/>
             <ProfileOption title={'To to..., idk'} icon={<Heart/>}/>
 
