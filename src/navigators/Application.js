@@ -1,4 +1,5 @@
 import {
+    AboutUs,
     AppliedJobs,
     Catalog, FavoriteJob,
     HomeScreen, JobDetail, ProfileManager, SearchFilter, SearchResult,
@@ -6,7 +7,6 @@ import {
 } from 'screens/main';
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StatusBar } from 'react-native';
@@ -16,7 +16,6 @@ import SplashScreen from 'react-native-splash-screen';
 import { LoginScreen, RegisterScreen, ForgotPassword } from 'screens/auth';
 
 const Stack = createStackNavigator();
-const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator()
 
 // @refresh reset
@@ -42,6 +41,7 @@ export const ApplicationNavigator = () => {
                         <Stack.Screen name="SearchFilter" component={SearchFilter}/>
                         <Stack.Screen name="JobDetail" component={JobDetail}/>
                         <Stack.Screen name="FavoriteJob" component={FavoriteJob}/>
+                        <Stack.Screen name="AboutUs" component={AboutUs}/>
                     </React.Fragment>
                     : <React.Fragment>
                         <Stack.Screen name="Login" component={LoginScreen}/>

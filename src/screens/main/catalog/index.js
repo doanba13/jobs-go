@@ -2,9 +2,11 @@ import React from 'react';
 import ScreenLayout from 'screens/components/layout/ScreenLayout';
 import { GridList, Text, View } from 'react-native-ui-lib';
 import { boxWithShadow } from 'utilities/boxShadow';
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Reddit } from 'assets';
+import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { randomCatalog } from 'utilities';
+import { useQuery } from 'react-query';
+import { catalogApi } from 'apis/catalogApi';
+import { LoadingScreen } from 'components';
 
 const data = [
     {
@@ -40,26 +42,34 @@ const data = [
 ]
 
 export const Catalog = () => {
+    const {
+        isLoading,
+        data: dataRes
+    } = useQuery(['catalog'], catalogApi.getCatalog)
+    console.log(dataRes)
+
     return (
         <ScreenLayout title={'Catalog'} desc={'Hey! lets discover our job catalogs'} notFooter contentHeight={'100%'}>
-            <View paddingV-20>
-                <GridList
-                    contentContainerStyle={{
-                        paddingBottom: 20,
-                        paddingTop: 10
-                    }}
-                    data={data}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity key={item.id}>
-                            <CatalogCard title={item.title} jobCount={item.jobCount}/>
-                        </TouchableOpacity>
-                    )}
-                    numColumns={2}
-                    itemSpacing={10}
-                    listPadding={10}
-                    keepItemSize={true}
-                />
-            </View>
+            {isLoading ? <LoadingScreen/>
+                : <View paddingV-20>
+                    <GridList
+                        contentContainerStyle={{
+                            paddingBottom: 20,
+                            paddingTop: 10
+                        }}
+                        data={data}
+                        renderItem={({ item }) => (
+                            <TouchableWithoutFeedback key={item.id}>
+                                <CatalogCard title={item.title} jobCount={item.jobCount}/>
+                            </TouchableWithoutFeedback>
+                        )}
+                        numColumns={2}
+                        itemSpacing={10}
+                        listPadding={10}
+                        keepItemSize={true}
+                    />
+                </View>
+            }
         </ScreenLayout>
     )
 }
