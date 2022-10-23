@@ -10,4 +10,10 @@ export const accountApi = {
         const { data } = await axios.post('/auth/login', userInfo, { headers: { 'Content-Type': 'multipart/form-data' }, });
         return data
     },
+
+    getUserInfo: async () => {
+        const data = await axios.get('/user/user-info', { headers: { 'Content-Type': 'application/json' }, });
+        console.log(data)
+        return data
+    },
 };

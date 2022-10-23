@@ -30,13 +30,13 @@ axios.interceptors.response.use(
         return response.data;
     },
     error => {
+        console.log('🚀 ~ file: axios.js ~ line 40 ~ error', error)
         const data = error.response.data;
         return Promise.reject(data);
     },
 );
 
 const selectErrorKeyOrMessage = error => {
-    console.log('🚀 ~ file: axios.js ~ line 40 ~ error', error)
     if (error && error.response && error.response.data) {
         const data = error.response.data;
 

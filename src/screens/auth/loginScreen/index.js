@@ -52,7 +52,6 @@ export const LoginScreen = () => {
             console.log(data, 'run')
             dispatch(setUser({
                 email: getValues('email'),
-                username: getValues('email')
             }))
             tokenStorage.set(data.token)
             setTimeout(() => navi.navigate('Home'), 500)

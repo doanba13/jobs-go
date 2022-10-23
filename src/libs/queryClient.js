@@ -2,7 +2,8 @@ import { QueryClient } from 'react-query';
 import Toast from 'react-native-simple-toast';
 
 const queryErrorHandler = ({ error }) => {
-    const message = Object.values(error)[0]
+    console.log(error)
+    const message = Object.values(error)[0] || 'Something went wrong!!!'
     Toast.show(`😑 Ops! ${message[0]}`, Toast.LONG)
 }
 

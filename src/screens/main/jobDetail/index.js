@@ -1,18 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Text, View } from 'react-native-ui-lib';
 import { Location, Reddit, Character3 } from 'assets';
 import { ScrollView, StyleSheet } from 'react-native';
 import { boxWithShadow } from 'utilities/boxShadow';
 import { Colors } from 'assets/Colors';
 import StyledButton from 'screens/components/form/StyledButton';
-import { Modal } from 'components';
+import { LoadingScreen, Modal } from 'components';
+import { randomCatalog } from 'utilities';
+import { useQuery } from 'react-query';
+import { jobApi } from 'apis';
 
-export const JobDetail = () => {
+const convertSalary = (from, to) => {
+    const convertedFrom = from.toString().slice(0, from.toString().length - 6) || 'Up to';
+    const convertedTo = to.toString().slice(0, to.toString().length - 6);
+
+    console.log(from.toString())
+
+    return `${convertedFrom} - ${convertedTo}`
+}
+
+export const JobDetail = ({ route }) => {
     const [tab, setTab] = useState(1);
     const [visible, setVisible] = useState(false)
+    const Icon = useMemo(() => randomCatalog(), [])
+    const { id } = route.params;
+
+    const {
+        data,
+        isLoading
+    } = useQuery(['get-job-detail', id], () => jobApi.getjobDetail(id))
+
+    // const {
+    //     company,
+    //     description,
+    //     job_benefit,
+    //     job_requirement,
+    //     salary_from,
+    //     salary_to,
+    //     title,
+    //     view,
+    //     quantity,
+    //     created_at
+    // } = data;
 
     return (
         <>
+            {isLoading && <LoadingScreen/>}
             <Modal
                 text={'JAJAJAJ'}
                 description={'HAHAHAHAH'}
@@ -25,107 +58,57 @@ export const JobDetail = () => {
                     text: 'Apply'
                 }}
             />
-            <View backgroundColor={'#f5f5f5'} height={'100%'}>
-                <View style={styles.container}>
-                    <View paddingB-40 width={'100%'}>
-                        <Text style={{ width: '100%' }} textBlack fs24 font-extraBold>FrontEnd Developer</Text>
-                        <Reddit style={styles.companyLogo}/>
-                    </View>
-                    <View row centerV marginB-20>
-                        <Text style={styles.tag} font-medium textBlack>Developer</Text>
-                        <Text marginL-30>20 March 2022</Text>
-                    </View>
-                    <View style={styles.infoContainer}>
-                        <Text fs30 font-light textBlack>2000-4000$</Text>
-                        <Text black50>Per month</Text>
-                        <View marginT-10 row centerV>
-                            <Location/>
-                            <Text marginL-5 marginB-2>Cau Giay, Hanoi</Text>
+            {data &&
+                <View backgroundColor={'#f5f5f5'} height={'100%'}>
+                    <View style={styles.container}>
+                        <View paddingB-40 width={'100%'}>
+                            <View width={'70%'}>
+                                <Text style={{ width: '100%' }} textBlack fs24 font-extraBold>{data.title}</Text>
+                                <Text black50 fs16 font-bold>{data.company.name}</Text>
+                            </View>
+                            <Icon style={styles.companyLogo}/>
                         </View>
-                        <Character3 style={styles.character}/>
+                        <View row centerV marginB-20>
+                            <Text style={styles.tag} font-medium textBlack>{data.quantity} employee</Text>
+                            <Text marginL-30>{data.created_at.slice(0, 10)}</Text>
+                        </View>
+                        <View style={styles.infoContainer}>
+                            <Text fs30 font-light
+                                  textBlack>{convertSalary(data.salary_from, data.salary_to)} Triệu</Text>
+                            <Text black50>Per month</Text>
+                            <View marginT-10 row centerV>
+                                <Location/>
+                                <Text marginL-5 marginB-2>Cau Giay, Hanoi</Text>
+                            </View>
+                            <Character3 style={styles.character}/>
+                        </View>
+                        <View paddingH-35 marginT-20 row spread>
+                            <Text style={tab === 1 ? styles.active : styles.inactive} onPress={() => setTab(1)}>Job
+                                Description</Text>
+                            <Text style={tab === 2 ? styles.active : styles.inactive}
+                                  onPress={() => setTab(2)}>Benefit</Text>
+                            <Text style={tab === 3 ? styles.active : styles.inactive} onPress={() => setTab(3)}>Company
+                                info</Text>
+                        </View>
                     </View>
-                    <View paddingH-35 marginT-20 row spread>
-                        <Text style={tab === 1 ? styles.active : styles.inactive} onPress={() => setTab(1)}>Job
-                            Description</Text>
-                        <Text style={tab === 2 ? styles.active : styles.inactive}
-                              onPress={() => setTab(2)}>Benefit</Text>
-                        <Text style={tab === 3 ? styles.active : styles.inactive} onPress={() => setTab(3)}>Company
-                            info</Text>
+                    <View style={styles.descContainer}>
+                        <ScrollView>
+                            {tab === 1 && <Text textAlign={'justify'}>
+                                {data.description}
+                                {data.job_requirement}
+                            </Text>}
+                            {tab === 2 && <Text textAlign={'justify'}>
+                                {data.job_benefit}
+                            </Text>}
+                            {tab === 3 && <Text textAlign={'justify'}>
+                                {data.company.description}
+                            </Text>}
+                        </ScrollView>
                     </View>
-                </View>
-                <View style={styles.descContainer}>
-                    <ScrollView>
-                        {tab === 1 && <Text textAlign={'justify'}>
-                            Dolor velit in duis pariatur ut nostrud exercitation ex voluptate Lorem officia nisi. Sunt
-                            laborum in quis nostrud adipisicing mollit. Dolore incididunt consequat dolore laboris id
-                            cillum. Et anim do cupidatat esse duis. Aliquip nostrud labore pariatur qui. Pariatur
-                            proident
-                            ex id ea laborum eu. Aliquip aliquip mollit officia exercitation excepteur.
-
-                            Dolor velit in duis pariatur ut nostrud exercitation ex voluptate Lorem officia nisi. Sunt
-                            laborum in quis nostrud adipisicing mollit. Dolore incididunt consequat dolore laboris id
-                            cillum. Et anim do cupidatat esse duis. Aliquip nostrud labore pariatur qui. Pariatur
-                            proident
-                            ex id ea laborum eu. Aliquip aliquip mollit officia exercitation excepteur.
-                            Dolor velit in duis pariatur ut nostrud exercitation ex voluptate Lorem officia nisi. Sunt
-                            laborum in quis nostrud adipisicing mollit. Dolore incididunt consequat dolore laboris id
-                            cillum. Et anim do cupidatat esse duis. Aliquip nostrud labore pariatur qui. Pariatur
-                            proident
-                            ex id ea laborum eu. Aliquip aliquip mollit officia exercitation excepteur.
-
-                            Dolor velit in duis pariatur ut nostrud exercitation ex voluptate Lorem officia nisi. Sunt
-                            laborum in quis nostrud adipisicing mollit. Dolore incididunt consequat dolore laboris id
-                            cillum. Et anim do cupidatat esse duis. Aliquip nostrud labore pariatur qui. Pariatur
-                            proident
-                            ex id ea laborum eu. Aliquip aliquip mollit officia exercitation excepteur.
-                            Dolor velit in duis pariatur ut nostrud exercitation ex voluptate Lorem officia nisi. Sunt
-                            laborum in quis nostrud adipisicing mollit. Dolore incididunt consequat dolore laboris id
-                            cillum. Et anim do cupidatat esse duis. Aliquip nostrud labore pariatur qui. Pariatur
-                            proident
-                            ex id ea laborum eu. Aliquip aliquip mollit officia exercitation excepteur.
-
-                            Dolor velit in duis pariatur ut nostrud exercitation ex voluptate Lorem officia nisi. Sunt
-                            laborum in quis nostrud adipisicing mollit. Dolore incididunt consequat dolore laboris id
-                            cillum. Et anim do cupidatat esse duis. Aliquip nostrud labore pariatur qui. Pariatur
-                            proident
-                            ex id ea laborum eu. Aliquip aliquip mollit officia exercitation excepteur.
-                            Dolor velit in duis pariatur ut nostrud exercitation ex voluptate Lorem officia nisi. Sunt
-                            laborum in quis nostrud adipisicing mollit. Dolore incididunt consequat dolore laboris id
-                            cillum. Et anim do cupidatat esse duis. Aliquip nostrud labore pariatur qui. Pariatur
-                            proident
-                            ex id ea laborum eu. Aliquip aliquip mollit officia exercitation excepteur.
-
-                            Dolor velit in duis pariatur ut nostrud exercitation ex voluptate Lorem officia nisi. Sunt
-                            laborum in quis nostrud adipisicing mollit. Dolore incididunt consequat dolore laboris id
-                            cillum. Et anim do cupidatat esse duis. Aliquip nostrud labore pariatur qui. Pariatur
-                            proident
-                            ex id ea laborum eu. Aliquip aliquip mollit officia exercitation excepteur.
-                        </Text>}
-                        {tab === 2 && <Text textAlign={'justify'}>
-                            Dolor velit in duis pariatur ut nostrud exercitation ex voluptate Lorem officia nisi. Sunt
-                            laborum in quis nostrud adipisicing mollit. Dolore incididunt consequat dolore laboris id
-                            cillum. Et anim do cupidatat esse duis. Aliquip nostrud labore pariatur qui. Pariatur
-                            proident
-                            ex id ea laborum eu. Aliquip aliquip mollit officia exercitation excepteur.
-                        </Text>}
-                        {tab === 3 && <Text textAlign={'justify'}>
-                            Dolor velit in duis pariatur ut nostrud exercitation ex voluptate Lorem officia nisi. Sunt
-                            laborum in quis nostrud adipisicing mollit. Dolore incididunt consequat dolore laboris id
-                            cillum. Et anim do cupidatat esse duis. Aliquip nostrud labore pariatur qui. Pariatur
-                            proident
-                            ex id ea laborum eu. Aliquip aliquip mollit officia exercitation excepteur.
-                            Dolor velit in duis pariatur ut nostrud exercitation ex voluptate Lorem officia nisi. Sunt
-                            laborum in quis nostrud adipisicing mollit. Dolore incididunt consequat dolore laboris id
-                            cillum. Et anim do cupidatat esse duis. Aliquip nostrud labore pariatur qui. Pariatur
-                            proident
-                            ex id ea laborum eu. Aliquip aliquip mollit officia exercitation excepteur.
-                        </Text>}
-                    </ScrollView>
-                </View>
-                <View paddingH-40>
-                    <StyledButton onPress={() => setVisible(true)} label={'Apply now'}/>
-                </View>
-            </View>
+                    <View paddingH-40>
+                        <StyledButton onPress={() => setVisible(true)} label={'Apply now'}/>
+                    </View>
+                </View>}
         </>
     )
 }
@@ -133,24 +116,28 @@ export const JobDetail = () => {
 const styles = StyleSheet.create({
     container: {
         position: 'relative',
-        height: '45%',
         width: '100%',
         borderBottomRightRadius: 30,
         borderBottomLeftRadius: 30,
         paddingHorizontal: 15,
-        paddingTop: 60,
-        backgroundColor: '#fff'
+        paddingTop: 30,
+        paddingBottom: 15,
+        backgroundColor: '#fff',
     },
     descContainer: {
-        height: '47%',
+        height: '40%',
         paddingHorizontal: 20,
-        paddingVertical: 15,
+        paddingBottom: 30,
+        paddingTop: 10,
 
     },
     companyLogo: {
         position: 'absolute',
-        right: 0,
-        top: -15
+        right: 15,
+        top: 0,
+        transform: [{
+            scale: 1.7
+        }]
     },
     infoContainer: {
         position: 'relative',
