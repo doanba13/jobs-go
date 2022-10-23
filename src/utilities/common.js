@@ -2,7 +2,23 @@ import { Alert } from 'react-native';
 import {
     Catalog1,
     Catalog2,
-    Catalog3
+    Catalog3,
+    Catalog4,
+    Catalog5,
+    Catalog6,
+    Catalog7,
+    Catalog8,
+    Catalog9,
+    Catalog10,
+    Catalog11,
+    Catalog12,
+    Catalog13,
+    Catalog14,
+    Catalog15,
+    Catalog16,
+    Catalog17,
+    Catalog18,
+    Catalog19,
 } from 'assets';
 import React from 'react';
 
@@ -26,7 +42,37 @@ export const randomCatalog = () => {
         Catalog3,
         Catalog2,
         Catalog1,
+        Catalog4,
+        Catalog5,
+        Catalog6,
+        Catalog7,
+        Catalog8,
+        Catalog9,
+        Catalog10,
+        Catalog11,
+        Catalog12,
+        Catalog13,
+        Catalog14,
+        Catalog15,
+        Catalog16,
+        Catalog17,
+        Catalog18,
+        Catalog19,
     ];
     const randomIndex = Math.floor(Math.random() * catalogIcons.length);
     return catalogIcons[randomIndex];
+};
+
+export const randomCompany = () => {
+    const company = [
+        'Cty TNHH Đông Á',
+        'Cty Cổ Phần ABC',
+        'Facebook',
+        'Reddit Corp',
+        'GST Company',
+        'MSB Bank',
+        'PVComBank Co.'
+    ];
+    const randomIndex = Math.floor(Math.random() * company.length);
+    return company[randomIndex];
 };

@@ -6,6 +6,7 @@ import { Search, Character1, Character2 } from 'assets';
 import { boxWithShadow, footer } from 'utilities/boxShadow';
 import CardCarousel from 'screens/components/CardCarousel';
 import { useNavigation } from '@react-navigation/native';
+import { jobApi } from 'apis';
 
 const { TextField } = Incubator;
 
@@ -82,7 +83,8 @@ export const HomeScreen = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-            <CardCarousel data={data} title={'Feature jobs'}/>
+            <CardCarousel apiFetcher={jobApi.getAllJob} fetcherKey={'get-all-job'} to={'FavoriteJob'} data={data}
+                          title={'Feature jobs'}/>
             <View style={{
                 paddingHorizontal: '3%',
             }}>

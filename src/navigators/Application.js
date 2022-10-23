@@ -21,6 +21,7 @@ const Tab = createBottomTabNavigator()
 // @refresh reset
 export const ApplicationNavigator = () => {
     const { isLogged } = useAuth();
+    console.log(isLogged)
 
     useEffect(() => {
         SplashScreen.hide();

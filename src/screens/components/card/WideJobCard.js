@@ -4,6 +4,7 @@ import { Location, Reddit } from 'assets';
 import { StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { boxWithShadow } from 'utilities/boxShadow';
 import { useNavigation } from '@react-navigation/native';
+import { randomCatalog } from 'utilities';
 
 const WideJobCard = ({ detail }) => {
     const {
@@ -15,12 +16,15 @@ const WideJobCard = ({ detail }) => {
         duration
     } = detail
 
+    const id = 667371;
+
     const navi = useNavigation()
+    const Icon = randomCatalog();
 
     return (
-        <TouchableWithoutFeedback onPress={() => navi.navigate('JobDetail')}>
+        <TouchableWithoutFeedback onPress={() => navi.navigate('JobDetail', { id })}>
             <View style={cardStyle.container}>
-                <Reddit style={cardStyle.logo}/>
+                <Icon style={cardStyle.logo}/>
                 <Text paddingT-10 textBlack fs14 font-bold>{title}</Text>
                 <Text black50 fs12 font-bold>{company} | {salary}$</Text>
                 <View marginT-2 flex row centerV>
@@ -57,9 +61,12 @@ const cardStyle = StyleSheet.create({
     },
     logo: {
         position: 'absolute',
-        left: 5,
-        top: 20,
+        left: 20,
+        top: 30,
         zIndex: 2,
+        transform: [{
+            scale: 1.7
+        }]
     },
     timeLeft: {
         position: 'absolute',
