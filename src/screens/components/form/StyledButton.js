@@ -4,15 +4,18 @@ import { StyleSheet } from 'react-native';
 import { boxWithShadow } from 'utilities/boxShadow';
 import { Fonts } from 'assets/Fonts';
 
-const StyledButton = ({
-                          label,
-                          onPress,
-                          bg,
-                          color
-                      }) => {
+export const StyledButton = ({
+                                 label,
+                                 onPress,
+                                 bg,
+                                 color,
+                                 width = '100%'
+                             }) => {
     return (
         <Button
-            style={[style.button, {}]}
+            style={[style.button, {
+                width
+            }]}
             labelStyle={[style.font, color]}
             label={label}
             backgroundColor={bg || 'rgb(183,255,163)'}
@@ -20,8 +23,6 @@ const StyledButton = ({
         />
     );
 };
-
-export default StyledButton;
 
 const style = StyleSheet.create({
     button: {

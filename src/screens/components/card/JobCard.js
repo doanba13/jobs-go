@@ -47,7 +47,7 @@ const JobCard = ({ jobInfo }) => {
                         <Text marginL-5 marginB-2 fs12 textBlack>{location || 'Hanoi'}</Text>
                     </View>
                     <Text fs14 font-bold
-                          textBlack>{convertSalary(salary_from, salary_to)}/month</Text>
+                          textBlack>{convertSalary(salary_from, salary_to)} Mil/month</Text>
                 </View>
             </View>
         </TouchableWithoutFeedback>

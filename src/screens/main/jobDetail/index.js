@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Text, View } from 'react-native-ui-lib';
-import { Location, Reddit, Character3 } from 'assets';
+import { Location, Character3 } from 'assets';
 import { ScrollView, StyleSheet } from 'react-native';
 import { boxWithShadow } from 'utilities/boxShadow';
 import { Colors } from 'assets/Colors';
-import StyledButton from 'screens/components/form/StyledButton';
+import { StyledButton } from 'screens/components';
 import { LoadingScreen, Modal } from 'components';
 import { randomCatalog } from 'utilities';
 import { useQuery } from 'react-query';

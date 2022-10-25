@@ -1,10 +1,8 @@
-import ScreenLayout from 'screens/components/layout/ScreenLayout';
 import { Text, View } from 'react-native-ui-lib';
 import React, { useEffect } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { User, Key } from 'assets';
-import StyledInput from 'screens/components/form/StyledInput';
-import StyledButton from 'screens/components/form/StyledButton';
+import { StyledButton, StyledInput } from 'screens/components';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { setUser } from 'store/auth';
@@ -13,6 +11,7 @@ import { tokenStorage } from 'utilities';
 import { useMutation } from 'react-query';
 import { accountApi } from 'apis';
 import { LoadingScreen } from 'components';
+import { ScreenLayout } from 'screens/components/layout';
 
 export const LoginScreen = () => {
     const dispatch = useDispatch();

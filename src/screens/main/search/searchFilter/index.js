@@ -5,7 +5,7 @@ import SearchInput from 'screens/main/search/component/SearchInput';
 import { ScrollView } from 'react-native';
 import FilterInput from 'screens/main/search/component/FilterInput';
 import { Controller, useForm } from 'react-hook-form';
-import StyledButton from 'screens/components/form/StyledButton';
+import { StyledButton } from 'screens/components';
 import { useNavigation } from '@react-navigation/native';
 
 const data = [

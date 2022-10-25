@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native-ui-lib';
-import { Location, Reddit } from 'assets';
-import { StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { Location } from 'assets';
+import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { boxWithShadow } from 'utilities/boxShadow';
 import { useNavigation } from '@react-navigation/native';
 import { randomCatalog } from 'utilities';
@@ -62,7 +62,7 @@ const cardStyle = StyleSheet.create({
     logo: {
         position: 'absolute',
         left: 20,
-        top: 30,
+        top: 35,
         zIndex: 2,
         transform: [{
             scale: 1.7

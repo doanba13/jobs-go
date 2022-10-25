@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Image, Text, View } from 'react-native-ui-lib';
 import { AboutUs, ExpandRight, Heart, Images, UserFill } from 'assets';
 import { TouchableOpacity } from 'react-native';
-import StyledButton from 'screens/components/form/StyledButton';
+import { StyledButton } from 'screens/components';
 import { useDispatch } from 'react-redux';
 import { onLogout } from 'store/auth';
 import { useNavigation } from '@react-navigation/native';
@@ -28,12 +28,16 @@ export const ProfileManager = () => {
                         <Image source={Images.logo} height={80} width={80}/>
                         <View marginL-5>
                             <Text marginB-2 fs19 font-bold
-                                  textBlack>{__DEV__ ? 'Nguyễn Doãn Ba' : `${data.first_name} ${data.last_name}`}</Text>
+                                  textBlack>{`${data.first_name} ${data.last_name}`}</Text>
                             <Text marginT-2 fs14 font-medium
-                                  black50>{__DEV__ ? 'ba.nguyendoan133@gmail.com' : data.email}</Text>
+                                  black50>{data.email}</Text>
                         </View>
                     </View>
-                    <ProfileOption title={'Personal Data'} icon={<UserFill/>}/>
+                    <ProfileOption
+                        title={'Personal Data'}
+                        icon={<UserFill/>}
+                        navigateTo={'UpdateProfile'}
+                        params={{ data }}/>
                     <ProfileOption title={'Favorite Jobs'} icon={<Heart/>} navigateTo={'FavoriteJob'}/>
                     <ProfileOption title={'About Us'} icon={<AboutUs/>} navigateTo={'AboutUs'}/>
                     <ProfileOption title={'Buy Premium'} icon={<Heart/>}/>
@@ -46,6 +50,12 @@ export const ProfileManager = () => {
                         />
                     </View>
                 </View>}
+            {/* <View marginT-200> */}
+            {/*     <StyledButton onPress={() => dispatch(onLogout())} */}
+            {/*                   label={'Log out!'} bg={'#ffa39e'} */}
+            {/*                   color={{ color: '#f1f4ff' }} */}
+            {/*     /> */}
+            {/* </View> */}
         </>
     )
 }
@@ -53,12 +63,13 @@ export const ProfileManager = () => {
 const ProfileOption = ({
                            title,
                            icon,
-                           navigateTo
+                           navigateTo,
+                           params
                        }) => {
     const navi = useNavigation()
 
     return (
-        <TouchableOpacity onPress={() => navi.navigate(navigateTo)}>
+        <TouchableOpacity onPress={() => navi.navigate(navigateTo, params)}>
             <View padding-10 row spread centerV>
                 <View row centerV>
                     <View style={{ borderRadius: 12 }} center width={35} height={35}

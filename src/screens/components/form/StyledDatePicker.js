@@ -4,15 +4,15 @@ import { StyleSheet } from 'react-native';
 import { boxWithShadow } from 'utilities/boxShadow';
 import { Colors } from 'assets/Colors';
 
-const StyledDatePicker = ({
-                              placeholder,
-                              type,
-                              Icon,
-                              error,
-                              onBlur,
-                              onChange,
-                              value
-                          }) => {
+export const StyledDatePicker = ({
+                                     placeholder,
+                                     type,
+                                     Icon,
+                                     error,
+                                     onBlur,
+                                     onChange,
+                                     value
+                                 }) => {
     return (
         <View paddingT-5 style={{ position: 'relative' }}>
             <DateTimePicker
@@ -31,8 +31,6 @@ const StyledDatePicker = ({
         </View>
     );
 };
-
-export default StyledDatePicker;
 
 const style = StyleSheet.create({
     styledInput: {

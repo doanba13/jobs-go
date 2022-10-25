@@ -1,10 +1,8 @@
-import ScreenLayout from 'screens/components/layout/ScreenLayout';
 import { Text, View } from 'react-native-ui-lib';
 import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { User, Key } from 'assets';
-import StyledInput from 'screens/components/form/StyledInput';
-import StyledButton from 'screens/components/form/StyledButton';
+import { StyledButton, StyledInput, ScreenLayout } from 'screens/components';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
 

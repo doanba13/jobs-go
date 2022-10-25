@@ -6,13 +6,21 @@ import { Colors } from 'assets/Colors';
 
 const { TextField } = Incubator;
 
-const StyledInput = ({ placeholder, type, Icon, error, onBlur, onChange, value }) => {
+export const StyledInput = ({
+                                placeholder,
+                                type,
+                                Icon,
+                                error,
+                                onBlur,
+                                onChange,
+                                value
+                            }) => {
     return (
         <View paddingT-5 style={{ position: 'relative' }}>
             <TextField
                 placeholder={placeholder}
                 placeholderTextColor={'rgba(0,0,0,0.5)'}
-                style={style.styledInput}
+                style={[style.styledInput, { marginTop: onBlur ? 0 : 5 }]}
                 secureTextEntry={type === 'password'}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -21,12 +29,10 @@ const StyledInput = ({ placeholder, type, Icon, error, onBlur, onChange, value }
                 onChangeText={onChange}
             />
             <Icon style={style.icon}/>
-            <Text marginV-5 marginL-40 fs12 color={Colors.error} font-light>{error}&nbsp;</Text>
+            {onBlur && <Text marginV-5 marginL-40 fs12 color={Colors.error} font-light>{error}&nbsp;</Text>}
         </View>
     );
 };
-
-export default StyledInput;
 
 const style = StyleSheet.create({
     styledInput: {

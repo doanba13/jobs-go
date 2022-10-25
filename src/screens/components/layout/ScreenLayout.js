@@ -3,13 +3,13 @@ import { Text, View } from 'react-native-ui-lib';
 import { Footer, HeaderPath } from 'assets';
 import { StyleSheet } from 'react-native';
 
-const ScreenLayout = ({
-                          children,
-                          title,
-                          desc,
-                          contentHeight,
-                          notFooter
-                      }) => {
+export const ScreenLayout = ({
+                                 children,
+                                 title,
+                                 desc,
+                                 contentHeight,
+                                 notFooter
+                             }) => {
     return (
         <View flex spread>
             <View style={{
@@ -27,8 +27,6 @@ const ScreenLayout = ({
         </View>
     );
 };
-
-export default ScreenLayout;
 
 const styles = StyleSheet.create({
     path: {

@@ -1,9 +1,9 @@
 import {
     AboutUs,
-    AppliedJobs,
-    Catalog, FavoriteJob,
-    HomeScreen, JobDetail, ProfileManager, SearchFilter, SearchResult,
-    SuggestedJob,
+    AppliedJobs, AwardSection,
+    Catalog, CreateCV, EducationSection, ExperienceSection, FavoriteJob, HomeCv,
+    HomeScreen, JobDetail, ListCV, ProfileManager, SearchFilter, SearchResult, SkillsSection,
+    SuggestedJob, UpdateProfile, CVProfile, Certification
 } from 'screens/main';
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
@@ -43,6 +43,15 @@ export const ApplicationNavigator = () => {
                         <Stack.Screen name="JobDetail" component={JobDetail}/>
                         <Stack.Screen name="FavoriteJob" component={FavoriteJob}/>
                         <Stack.Screen name="AboutUs" component={AboutUs}/>
+                        <Stack.Screen name="UpdateProfile" component={UpdateProfile}/>
+                        <Stack.Screen name="Education" component={EducationSection}/>
+                        <Stack.Screen name="Skill" component={SkillsSection}/>
+                        <Stack.Screen name="Award" component={AwardSection}/>
+                        <Stack.Screen name="Experience" component={ExperienceSection}/>
+                        <Stack.Screen name="CreateCv" component={CreateCV}/>
+                        <Stack.Screen name="ListCv" component={ListCV}/>
+                        <Stack.Screen name="CVProfile" component={CVProfile}/>
+                        <Stack.Screen name="Certification" component={Certification}/>
                     </React.Fragment>
                     : <React.Fragment>
                         <Stack.Screen name="Login" component={LoginScreen}/>
@@ -57,10 +66,10 @@ export const ApplicationNavigator = () => {
 
 const TabBarNavigation = () => {
     return (
-        <Tab.Navigator initialRouteName={'Home'} screenOptions={{ headerShown: false }}>
-            <Tab.Screen name="Home" component={HomeScreen}/>
-            <Tab.Screen name="AppliedJobs" component={AppliedJobs}/>
-            <Tab.Screen name="CV" component={Catalog}/>
+        <Tab.Navigator initialRouteName={'HomeScreen'} screenOptions={{ headerShown: false }}>
+            <Tab.Screen name="HomeScreen" component={HomeScreen}/>
+            <Tab.Screen name="AppliedJobs" component={FavoriteJob}/>
+            <Tab.Screen name="CV" component={HomeCv}/>
             <Tab.Screen name="Profile" component={ProfileManager}/>
         </Tab.Navigator>
     )
