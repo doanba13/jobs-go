@@ -1,11 +1,6 @@
 import { tokenStorage } from 'utilities';
 import { createSlice } from '@reduxjs/toolkit';
 
-// const getSavedUser = async () => {
-//     const user = await AsyncStorage.getItem('jobgouser');
-//     return JSON.parse(user);
-// }
-
 const slice = createSlice({
     name: 'auth',
     initialState: {

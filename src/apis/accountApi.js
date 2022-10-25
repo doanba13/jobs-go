@@ -12,7 +12,13 @@ export const accountApi = {
     },
 
     getUserInfo: async () => {
-        const data = await axios.get('/user/user-info', { headers: { 'Content-Type': 'application/json' }, });
+        const data = await axios.get('/user/user-info');
+        console.log(data)
+        return data
+    },
+
+    updateuserInfo: async (updatedData) => {
+        const data = await axios.post('/user/update-user', updatedData, { headers: { 'Content-Type': 'multipart/form-data' }, });
         console.log(data)
         return data
     },

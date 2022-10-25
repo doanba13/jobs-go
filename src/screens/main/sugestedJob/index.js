@@ -1,6 +1,6 @@
 import React from 'react';
 import CardCarousel from 'screens/components/CardCarousel';
-import ScreenLayout from 'screens/components/layout/ScreenLayout';
+import { ScreenLayout } from 'screens/components';
 import { ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
 

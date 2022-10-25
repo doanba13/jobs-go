@@ -1,5 +1,5 @@
 import React from 'react';
-import ScreenLayout from 'screens/components/layout/ScreenLayout';
+import { ScreenLayout } from 'screens/components';
 import { GridList, Text, View } from 'react-native-ui-lib';
 import { boxWithShadow } from 'utilities/boxShadow';
 import { StyleSheet, TouchableWithoutFeedback } from 'react-native';

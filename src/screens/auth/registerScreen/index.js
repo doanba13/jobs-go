@@ -1,13 +1,10 @@
-import { DateTimePicker, Text, View } from 'react-native-ui-lib';
-import StyledInput from 'screens/components/form/StyledInput';
+import { Text, View } from 'react-native-ui-lib';
+import { StyledButton, StyledInput, StyledDatePicker, ScreenLayout } from 'screens/components';
 import { Key, User } from 'assets';
 import { ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
-import StyledButton from 'screens/components/form/StyledButton';
-import ScreenLayout from 'screens/components/layout/ScreenLayout';
 import React, { useEffect, useRef } from 'react';
 import { boxWithShadow } from 'utilities/boxShadow';
 import { useForm, Controller } from 'react-hook-form';
-import StyledDatePicker from 'screens/components/form/StyledDatePicker';
 import { useNavigation } from '@react-navigation/native';
 import { useMutation } from 'react-query';
 import { accountApi } from 'apis';

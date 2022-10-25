@@ -1,4 +1,4 @@
-import ScreenLayout from 'screens/components/layout/ScreenLayout';
+import { ScreenLayout } from 'screens/components';
 import { ScrollView } from 'react-native';
 import { Text, View } from 'react-native-ui-lib';
 import WideJobCard from 'screens/components/card/WideJobCard';

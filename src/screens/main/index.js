@@ -4,3 +4,4 @@ export * from './search';
 export * from './jobDetail';
 export * from './catalog';
 export * from './profile';
+export * from './cvManage';
