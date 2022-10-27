@@ -15,7 +15,7 @@ const fieldProps = {
 export const AwardSection = ({ navigation }) => {
     const dispatch = useDispatch();
     const { award } = useSelector(state => state.createCv)
-    const [fields, setField] = useState([fieldProps]);
+    const [fields, setField] = useState([cloneDeep(fieldProps)]);
     const scrollRef = useRef();
 
     useEffect(() => {
@@ -31,7 +31,7 @@ export const AwardSection = ({ navigation }) => {
     }
 
     const addFields = () => {
-        setField([...fields, fieldProps])
+        setField([...fields, cloneDeep(fieldProps)])
         scrollRef.current.scrollToEnd({ animated: true })
     }
 

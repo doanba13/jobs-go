@@ -10,26 +10,36 @@ import { cvApi } from 'apis';
 import { LoadingScreen } from 'components';
 import Toast from 'react-native-simple-toast';
 import { resetCvStore } from 'store/createCv';
+import { queryClient } from 'libs';
 
-export const CreateCV = () => {
+export const CreateCV = ({
+                             route,
+                             navigation
+                         }) => {
     const dispatch = useDispatch();
     const cv = useSelector(state => state.createCv);
     const {
+        type,
+        id
+    } = route.params;
+
+    const {
         isLoading,
         data,
-        mutate: onCreateCv
-    } = useMutation(cvApi.createCv);
+        mutate: onMutateCv
+    } = useMutation(type === 'update' ? cvApi.updateCv : cvApi.createCv);
 
     useEffect(() => {
         if (data?.success) {
-            console.log('run')
-            Toast.show('🥰 Create CV Successfully!', Toast.LONG)
+            Toast.show(`🥰 ${type === 'update' ? 'Updated' : 'Created'} CV Successfully!`, Toast.LONG)
             dispatch(resetCvStore());
+            queryClient.refetchQueries('list-all-cv')
+            setTimeout(() => navigation.navigate('ListCv'), 1000)
         }
     }, [data])
 
     const handlerCreateCv = () => {
-        onCreateCv(cv)
+        onMutateCv(type === 'update' ? { cv_id: id, ...cv } : cv)
     }
 
     return (
@@ -45,7 +55,7 @@ export const CreateCV = () => {
                     <CvSection title={'Skill'} icon={<Heart/>} navigateTo={'Skill'}/>
                     <CvSection title={'Award'} icon={<Heart/>} navigateTo={'Award'}/>
                     <View marginT-250>
-                        <StyledButton label={'Create!'} onPress={handlerCreateCv}/>
+                        <StyledButton label={type === 'update' ? 'Update' : 'Create'} onPress={handlerCreateCv}/>
                     </View>
                 </View>
             </ScreenLayout>

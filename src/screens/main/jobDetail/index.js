@@ -30,19 +30,6 @@ export const JobDetail = ({ route }) => {
         isLoading
     } = useQuery(['get-job-detail', id], () => jobApi.getjobDetail(id))
 
-    // const {
-    //     company,
-    //     description,
-    //     job_benefit,
-    //     job_requirement,
-    //     salary_from,
-    //     salary_to,
-    //     title,
-    //     view,
-    //     quantity,
-    //     created_at
-    // } = data;
-
     return (
         <>
             {isLoading && <LoadingScreen/>}
