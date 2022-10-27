@@ -43,6 +43,7 @@ const slice = createSlice({
         setCvCertification: (state, { payload: cert }) => {
             state.certification = cert;
         },
+        setCv: (_, { payload: cv }) => cv,
         resetCvStore: () => initialCv
     },
 });
@@ -54,7 +55,8 @@ export const {
     setCvSkill,
     setCvAward,
     setCvCertification,
-    resetCvStore
+    resetCvStore,
+    setCv
 } = slice.actions;
 
 export const getCvData = state => state.createCv;

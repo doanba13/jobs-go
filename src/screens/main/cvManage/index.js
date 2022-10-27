@@ -7,3 +7,4 @@ export * from './home';
 export * from './listCv';
 export * from './profile';
 export * from './certification';
+export * from './cvDetail';

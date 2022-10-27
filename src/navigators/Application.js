@@ -3,7 +3,7 @@ import {
     AppliedJobs, AwardSection,
     Catalog, CreateCV, EducationSection, ExperienceSection, FavoriteJob, HomeCv,
     HomeScreen, JobDetail, ListCV, ProfileManager, SearchFilter, SearchResult, SkillsSection,
-    SuggestedJob, UpdateProfile, CVProfile, Certification
+    SuggestedJob, UpdateProfile, CVProfile, Certification, CvDetail
 } from 'screens/main';
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
@@ -52,6 +52,7 @@ export const ApplicationNavigator = () => {
                         <Stack.Screen name="ListCv" component={ListCV}/>
                         <Stack.Screen name="CVProfile" component={CVProfile}/>
                         <Stack.Screen name="Certification" component={Certification}/>
+                        <Stack.Screen name="CvDetail" component={CvDetail}/>
                     </React.Fragment>
                     : <React.Fragment>
                         <Stack.Screen name="Login" component={LoginScreen}/>
