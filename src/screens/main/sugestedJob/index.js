@@ -3,45 +3,7 @@ import CardCarousel from 'screens/components/CardCarousel';
 import { ScreenLayout } from 'screens/components';
 import { ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
-
-//
-const data = [
-    {
-        title: 'FrontEnd Developer',
-        company: 'Reddit.co',
-        tags: ['Senior', 'Full-time', 'Developer'],
-        location: 'Cau Giay, Hanoi',
-        salary: '2000-5000',
-    },
-    {
-        title: 'BackEnd Developer',
-        company: 'Giao hàng tiết kiệm',
-        tags: ['Junior', 'Part-time', 'Senior'],
-        location: 'Cau Giay, Hanoi',
-        salary: 'Upto 8000',
-    },
-    {
-        title: 'Project Manager',
-        company: 'Viettel',
-        tags: ['Full-time'],
-        location: 'Hoan Kiem, Hanoi',
-        salary: '1500-2000',
-    },
-    {
-        title: 'Accountance',
-        company: 'JWC.Co',
-        tags: ['Full-time', 'Leader'],
-        location: 'Hoan Kiem, Hanoi',
-        salary: '2000-5000',
-    },
-    {
-        title: 'DevOps',
-        company: 'Facebook',
-        tags: ['Senior', 'Full-time', 'Developer'],
-        location: 'My Tho',
-        salary: '200',
-    },
-];
+import { jobApi } from 'apis';
 
 export const SuggestedJob = () => {
     return (
@@ -49,10 +11,33 @@ export const SuggestedJob = () => {
                       contentHeight={'100%'}>
             <ScrollView>
                 <View paddingB-200>
-                    <CardCarousel data={data} title={'Jobs you have experience'}/>
-                    <CardCarousel data={data} title={'Jobs near you'}/>
-                    <CardCarousel data={data} title={'Jobs near you'}/>
-                    <CardCarousel data={data} title={'Jobs near you'}/>
+                    <CardCarousel
+                        apiFetcher={jobApi.getItJob}
+                        fetcherKey={'get-it-job'}
+                        params={{
+                            title: 'IT jobs',
+                            desc: 'Top IT jobs are here!'
+                        }}
+                        title={'IT jobs'}
+                    />
+                    <CardCarousel
+                        apiFetcher={jobApi.getManagerJob}
+                        fetcherKey={'get-manager-job'}
+                        params={{
+                            title: 'Manager jobs',
+                            desc: 'Challenger your career!'
+                        }}
+                        title={'Manager jobs'}
+                    />
+                    <CardCarousel
+                        apiFetcher={jobApi.getInternJob}
+                        fetcherKey={'get-intern-job'}
+                        params={{
+                            title: 'Internship jobs',
+                            desc: 'Start your career!'
+                        }}
+                        title={'Internship jobs'}
+                    />
                 </View>
             </ScrollView>
         </ScreenLayout>

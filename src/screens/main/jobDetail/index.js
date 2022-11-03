@@ -13,15 +13,14 @@ import { jobApi } from 'apis';
 const convertSalary = (from, to) => {
     const convertedFrom = from.toString().slice(0, from.toString().length - 6) || 'Up to';
     const convertedTo = to.toString().slice(0, to.toString().length - 6);
-
-    console.log(from.toString())
-
     return `${convertedFrom} - ${convertedTo}`
 }
 
-export const JobDetail = ({ route }) => {
+export const JobDetail = ({
+                              route,
+                              navigation
+                          }) => {
     const [tab, setTab] = useState(1);
-    const [visible, setVisible] = useState(false)
     const Icon = useMemo(() => randomCatalog(), [])
     const { id } = route.params;
 
@@ -33,18 +32,6 @@ export const JobDetail = ({ route }) => {
     return (
         <>
             {isLoading && <LoadingScreen/>}
-            <Modal
-                text={'JAJAJAJ'}
-                description={'HAHAHAHAH'}
-                visible={visible}
-                onClose={() => setVisible(false)}
-                loading={true}
-                iconClose={true}
-                agreeButton={{
-                    onPress: () => console.log('ngu'),
-                    text: 'Apply'
-                }}
-            />
             {data &&
                 <View backgroundColor={'#f5f5f5'} height={'100%'}>
                     <View style={styles.container}>
@@ -93,7 +80,7 @@ export const JobDetail = ({ route }) => {
                         </ScrollView>
                     </View>
                     <View paddingH-40>
-                        <StyledButton onPress={() => setVisible(true)} label={'Apply now'}/>
+                        <StyledButton onPress={() => navigation.navigate('ApplyJob', { id })} label={'Apply now'}/>
                     </View>
                 </View>}
         </>

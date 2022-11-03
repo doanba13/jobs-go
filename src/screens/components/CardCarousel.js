@@ -8,7 +8,7 @@ import { LoadingScreen } from 'components';
 
 const CardCarousel = ({
                           title,
-                          to,
+                          params,
                           apiFetcher,
                           fetcherKey
                       }) => {
@@ -18,8 +18,6 @@ const CardCarousel = ({
         data,
         isLoading
     } = useQuery(fetcherKey, apiFetcher);
-
-    console.log(data)
 
     return (
         <>
@@ -35,14 +33,18 @@ const CardCarousel = ({
                             <Text textBlack fs20 font-medium>
                                 {title}
                             </Text>
-                            <TouchableOpacity backgroundColor={'transparent'} onPress={() => navigate.navigate(to)}>
-                                <Text textBlack fs12 font-light>{to ? 'View more' : ''}</Text>
+                            <TouchableOpacity backgroundColor={'transparent'}
+                                              onPress={() => navigate.navigate('FavoriteJob', {
+                                                  ...params,
+                                                  fetcherKey,
+                                                  apiFetcher
+                                              })}>
+                                <Text textBlack fs12 font-light>{params ? 'View more' : ''}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                     <View style={{
                         height: scaleSize(210),
-                        // backgroundColor: 'green',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',

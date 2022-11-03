@@ -5,21 +5,12 @@ const images = {
     background2: require('./images/bg_dark2.png'),
     mockImg2: require('./images/mock-img.png'),
     mockImg: require('./images/mockimg.png'),
-    banner: require('./images/app-banner.png'),
-    flashcard: require('./images/flashcard.png'),
-    game: require('./images/game-mock-img.png'),
-    gamePractice: require('./images/game-practice.png'),
-    gameRanking: require('./images/game-ranking.png'),
-    gameSpeaker: require('./images/game-speaker.png'),
-    speakingMan: require('./images/speaking-man.png'),
-    gameHint: require('./images/game-hint.png'),
+    company1: require('./images/company1.jpeg'),
+    company2: require('./images/company2.jpeg'),
+    company3: require('./images/company3.jpeg'),
+    company4: require('./images/company4.jpeg'),
+    company5: require('./images/company5.jpeg'),
+    company6: require('./images/company6.jpeg'),
 };
 
-const icons = {
-    flashcardIcon: require('./images/flashcard-icon.png'),
-    sentenceIcon: require('./images/sentence-icon.png'),
-    vocabularyIcon: require('./images/vocabulary-icon.png'),
-    playGameIcon: require('./images/playgame-icon.png'),
-}
-
-export { icons, images };
+export { images };

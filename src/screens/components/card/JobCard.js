@@ -34,11 +34,11 @@ const JobCard = ({ jobInfo }) => {
         <TouchableWithoutFeedback onPress={() => navi.navigate('JobDetail', { id })}>
             <View style={jobCard.container}>
                 <Icon style={jobCard.logo}/>
-                <Text paddingB-5 textBlack fs19 font-bold marginB-8>{title}</Text>
+                <Text numberOfLines={2} paddingB-5 textBlack fs19 font-bold marginB-8>{title}</Text>
                 <Text black50 fs16 font-bold>{company.name}</Text>
                 <View paddingV-10 flex row>
                     <Text fs10 style={jobCard.categoryTag} marginR-10 textBlack>
-                        {quantity} employee
+                        {quantity} applied
                     </Text>
                 </View>
                 <View flex row spread centerV>
@@ -66,7 +66,7 @@ const jobCard = StyleSheet.create({
         ...boxWithShadow,
         elevation: 10,
         paddingHorizontal: 10,
-        paddingTop: 75,
+        paddingTop: 70,
         paddingBottom: 5,
         marginTop: 5,
     },

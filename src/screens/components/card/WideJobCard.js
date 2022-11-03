@@ -6,17 +6,25 @@ import { boxWithShadow } from 'utilities/boxShadow';
 import { useNavigation } from '@react-navigation/native';
 import { randomCatalog } from 'utilities';
 
+const convertSalary = (from, to) => {
+    const convertedFrom = from.toString().slice(0, from.toString().length - 6) || 'Up to';
+    const convertedTo = to.toString().slice(0, to.toString().length - 6);
+
+    console.log(from.toString())
+
+    return `${convertedFrom} - ${convertedTo}`
+}
+
 const WideJobCard = ({ detail }) => {
     const {
         title,
+        quantity,
         company,
-        salary,
         location,
-        tags,
-        duration
+        salary_from,
+        salary_to,
+        id
     } = detail
-
-    const id = 667371;
 
     const navi = useNavigation()
     const Icon = randomCatalog();
@@ -25,20 +33,16 @@ const WideJobCard = ({ detail }) => {
         <TouchableWithoutFeedback onPress={() => navi.navigate('JobDetail', { id })}>
             <View style={cardStyle.container}>
                 <Icon style={cardStyle.logo}/>
-                <Text paddingT-10 textBlack fs14 font-bold>{title}</Text>
-                <Text black50 fs12 font-bold>{company} | {salary}$</Text>
-                <View marginT-2 flex row centerV>
-                    <Location/>
-                    <Text black50 fs10>{location}</Text>
+                <Text paddingT-10 textBlack fs14 font-bold numberOfLines={1}>{title}</Text>
+                <Text black50 fs12 font-bold>{company.name}</Text>
+                <Text marginT-5 textBlack fs12 font-medium>{convertSalary(salary_from, salary_to)} Mil/month</Text>
+                <View marginT-2 flex row centerV spread>
+                    <View row>
+                        <Location/>
+                        <Text black50 fs10>{location || 'Hanoi'}</Text>
+                    </View>
+                    <Text fs10 style={cardStyle.categoryTag} textBlack>{quantity} applied</Text>
                 </View>
-                <View paddingV-10 flex row>
-                    {
-                        tags.map((tag, i) =>
-                            <Text key={i} fs10 style={cardStyle.categoryTag} marginR-10
-                                  textBlack>{tag}</Text>)
-                    }
-                </View>
-                <Text style={cardStyle.timeLeft} fs12 textBlack>{duration} days left!</Text>
             </View>
         </TouchableWithoutFeedback>
     )
@@ -50,8 +54,9 @@ const cardStyle = StyleSheet.create({
     container: {
         position: 'relative',
         paddingTop: 10,
-        paddingBottom: 5,
+        paddingBottom: 10,
         paddingLeft: 80,
+        paddingRight: 20,
         backgroundColor: '#fff',
         borderRadius: 15,
         ...boxWithShadow,
