@@ -32,6 +32,7 @@ const style = StyleSheet.create({
         fontStyle: 24,
         width: '100%',
         zIndex: 10,
+        marginTop: 15
     },
     font: {
         fontSize: 24,

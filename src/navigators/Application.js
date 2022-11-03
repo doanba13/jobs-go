@@ -3,7 +3,7 @@ import {
     AppliedJobs, AwardSection,
     Catalog, CreateCV, EducationSection, ExperienceSection, FavoriteJob, HomeCv,
     HomeScreen, JobDetail, ListCV, ProfileManager, SearchFilter, SearchResult, SkillsSection,
-    SuggestedJob, UpdateProfile, CVProfile, Certification, CvDetail
+    SuggestedJob, UpdateProfile, CVProfile, Certification, CvDetail, ApplyJob
 } from 'screens/main';
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
@@ -14,6 +14,11 @@ import { navigationRef } from './utils';
 import { useAuth } from 'hooks';
 import SplashScreen from 'react-native-splash-screen';
 import { LoginScreen, RegisterScreen, ForgotPassword } from 'screens/auth';
+import { CompanyList } from 'screens/main/company';
+import { CompanyDetail } from 'screens/main/company/CompanyDetail';
+import { CompanyJobs } from 'screens/main/company/CompanyJobs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator()
@@ -53,6 +58,10 @@ export const ApplicationNavigator = () => {
                         <Stack.Screen name="CVProfile" component={CVProfile}/>
                         <Stack.Screen name="Certification" component={Certification}/>
                         <Stack.Screen name="CvDetail" component={CvDetail}/>
+                        <Stack.Screen name="ApplyJob" component={ApplyJob}/>
+                        <Stack.Screen name="CompanyList" component={CompanyList}/>
+                        <Stack.Screen name="CompanyDetail" component={CompanyDetail}/>
+                        <Stack.Screen name="CompanyJob" component={CompanyJobs}/>
                     </React.Fragment>
                     : <React.Fragment>
                         <Stack.Screen name="Login" component={LoginScreen}/>
@@ -67,11 +76,62 @@ export const ApplicationNavigator = () => {
 
 const TabBarNavigation = () => {
     return (
-        <Tab.Navigator initialRouteName={'HomeScreen'} screenOptions={{ headerShown: false }}>
-            <Tab.Screen name="HomeScreen" component={HomeScreen}/>
-            <Tab.Screen name="AppliedJobs" component={FavoriteJob}/>
-            <Tab.Screen name="CV" component={HomeCv}/>
-            <Tab.Screen name="Profile" component={ProfileManager}/>
+        <Tab.Navigator
+            initialRouteName={'HomeScreen'}
+            screenOptions={{
+                headerShown: false,
+                tabBarShowLabel: false,
+                tabBarActiveTintColor: '#A4DCC6',
+            }}
+        >
+            <Tab.Screen
+                name="HomeScreen"
+                component={HomeScreen}
+                options={{
+                    tabBarIcon: ({
+                                     color,
+                                     size
+                                 }) => (
+                        <Ionicons name={'home-sharp'} size={size} color={color}/>
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="AppliedJobs"
+                component={FavoriteJob}
+                options={{
+                    tabBarIcon: ({
+                                     color,
+                                     size
+                                 }) => (
+                        <Ionicons name={'heart-sharp'} size={size} color={color}/>
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="CV"
+                component={HomeCv}
+                options={{
+                    tabBarIcon: ({
+                                     color,
+                                     size
+                                 }) => (
+                        <Ionicons name="list-sharp" color={color} size={size}/>
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Profile"
+                component={ProfileManager}
+                options={{
+                    tabBarIcon: ({
+                                     color,
+                                     size
+                                 }) => (
+                        <Ionicons name="person-sharp" color={color} size={size}/>
+                    ),
+                }}
+            />
         </Tab.Navigator>
     )
 }

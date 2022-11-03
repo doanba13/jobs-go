@@ -10,44 +10,6 @@ import { jobApi } from 'apis';
 
 const { TextField } = Incubator;
 
-const data = [
-    {
-        title: 'FrontEnd Developer',
-        company: 'Reddit.co',
-        tags: ['Senior', 'Full-time', 'Developer'],
-        location: 'Cau Giay, Hanoi',
-        salary: '2000-5000',
-    },
-    {
-        title: 'BackEnd Developer',
-        company: 'Giao hàng tiết kiệm',
-        tags: ['Junior', 'Part-time', 'Senior'],
-        location: 'Cau Giay, Hanoi',
-        salary: 'Upto 8000',
-    },
-    {
-        title: 'Project Manager',
-        company: 'Viettel',
-        tags: ['Full-time'],
-        location: 'Hoan Kiem, Hanoi',
-        salary: '1500-2000',
-    },
-    {
-        title: 'Accountance',
-        company: 'JWC.Co',
-        tags: ['Full-time', 'Leader'],
-        location: 'Hoan Kiem, Hanoi',
-        salary: '2000-5000',
-    },
-    {
-        title: 'DevOps',
-        company: 'Facebook',
-        tags: ['Senior', 'Full-time', 'Developer'],
-        location: 'My Tho',
-        salary: '200',
-    },
-];
-
 export const HomeScreen = ({ navigation }) => {
     const { t } = useTranslation();
     const navi = useNavigation()
@@ -83,8 +45,15 @@ export const HomeScreen = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-            <CardCarousel apiFetcher={jobApi.getAllJob} fetcherKey={'get-all-job'} to={'FavoriteJob'} data={data}
-                          title={'Feature jobs'}/>
+            <CardCarousel
+                apiFetcher={jobApi.getHotJob}
+                fetcherKey={'get-hot-job'}
+                params={{
+                    title: 'Hot jobs',
+                    desc: 'Top high salary job!'
+                }}
+                title={'High Salary'}
+            />
             <View style={{
                 paddingHorizontal: '3%',
             }}>

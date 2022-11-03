@@ -18,7 +18,7 @@ import {
     Catalog16,
     Catalog17,
     Catalog18,
-    Catalog19,
+    Catalog19, Images,
 } from 'assets';
 import React from 'react';
 
@@ -63,16 +63,16 @@ export const randomCatalog = () => {
     return catalogIcons[randomIndex];
 };
 
-export const randomCompany = () => {
-    const company = [
-        'Cty TNHH Đông Á',
-        'Cty Cổ Phần ABC',
-        'Facebook',
-        'Reddit Corp',
-        'GST Company',
-        'MSB Bank',
-        'PVComBank Co.'
-    ];
-    const randomIndex = Math.floor(Math.random() * company.length);
-    return company[randomIndex];
+export const randomCompanyImage = () => {
+    const {
+        company1,
+        company2,
+        company3,
+        company4,
+        company5,
+        company6
+    } = Images;
+    const company = [company1, company2, company3, company4, company5, company6];
+
+    return new Array(3).map(() => company[Math.floor(Math.random() * company.length)])
 };

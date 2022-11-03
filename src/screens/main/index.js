@@ -5,3 +5,4 @@ export * from './jobDetail';
 export * from './catalog';
 export * from './profile';
 export * from './cvManage';
+export * from './applyJob';

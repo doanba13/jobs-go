@@ -5,7 +5,11 @@ import { boxWithShadow } from 'utilities/boxShadow';
 
 const { TextField } = Incubator;
 
-const SearchInput = ({ placeholder }) => {
+export const SearchInput = ({
+                                placeholder,
+                                value,
+                                onChange
+                            }) => {
     return (
         <View marginH-20 style={{
             width: '90%',
@@ -17,12 +21,14 @@ const SearchInput = ({ placeholder }) => {
                 placeholder={placeholder}
                 placeholderTextColor={'rgba(0,0,0,1)'}
                 style={style.styledInput}
+                autoCapitalize="none"
+                autoCorrect={false}
+                value={value}
+                onChangeText={onChange}
             />
         </View>
     )
 }
-
-export default SearchInput;
 
 const style = StyleSheet.create({
     styledInput: {
