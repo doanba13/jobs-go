@@ -17,7 +17,10 @@ const datad = {
 }
 
 export const CompanyJobs = ({ route }) => {
-    const { id } = route.params
+    const {
+        id,
+        company
+    } = route.params
     const {
         data,
         isLoading
@@ -30,7 +33,10 @@ export const CompanyJobs = ({ route }) => {
             <ScrollView>
                 <View width={'100%'} paddingT-10 paddingB-80 paddingH-10>
                     {isLoading ? <LoadingScreen/> : <View paddingV-25>
-                        <WideJobCard detail={datad}/>
+                        {data.jobs.map(data => <WideJobCard key={data.id} detail={{
+                            ...data,
+                            company
+                        }}/>)}
                     </View>}
                 </View>
             </ScrollView>

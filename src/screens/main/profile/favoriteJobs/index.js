@@ -11,8 +11,11 @@ export const FavoriteJob = ({ route }) => {
         fetcherKey,
         apiFetcher,
         title,
-        desc
+        desc,
+        type
     } = route.params;
+
+    console.log(type)
 
     const {
         data,
@@ -26,9 +29,12 @@ export const FavoriteJob = ({ route }) => {
                           notFooter>
                 <ScrollView>
                     <View width={'100%'} paddingB-80 paddingH-10>
-                        <View paddingV-25>
-                            {data && data.jobs.map((el) => <WideJobCard detail={el}/>)}
-                        </View>
+                        {data &&
+                            <View paddingV-25>
+                                {type !== 'APPLY' && data.jobs.map((el) => <WideJobCard detail={el}/>)}
+                                {type === 'APPLY' && data.map((el) => <WideJobCard detail={el.job}/>)}
+                            </View>
+                        }
                     </View>
                 </ScrollView>
             </ScreenLayout>

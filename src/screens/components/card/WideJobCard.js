@@ -34,7 +34,7 @@ const WideJobCard = ({ detail }) => {
             <View style={cardStyle.container}>
                 <Icon style={cardStyle.logo}/>
                 <Text paddingT-10 textBlack fs14 font-bold numberOfLines={1}>{title}</Text>
-                <Text black50 fs12 font-bold>{company.name}</Text>
+                <Text black50 fs12 font-bold>{company?.name || title}</Text>
                 <Text marginT-5 textBlack fs12 font-medium>{convertSalary(salary_from, salary_to)} Mil/month</Text>
                 <View marginT-2 flex row centerV spread>
                     <View row>

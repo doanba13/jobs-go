@@ -46,7 +46,10 @@ export const CompanyDetail = ({
                         </ScrollView>
                     </View>
                     <View paddingH-40>
-                        <StyledButton onPress={() => navigation.navigate('CompanyJob', { id })} label={'View Jobs'}/>
+                        <StyledButton onPress={() => navigation.navigate('CompanyJobs', {
+                            id,
+                            company: data
+                        })} label={'View Jobs'}/>
                     </View>
                 </View>}
         </>

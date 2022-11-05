@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { resetCvStore } from 'store/createCv';
+import { jobApi } from 'apis';
 
 export const HomeCv = () => {
     return (
@@ -15,6 +16,13 @@ export const HomeCv = () => {
                 <CvSection title={'List all CV'} icon={<Heart/>} navigateTo={'ListCv'}/>
                 <CvSection title={'Create new!'} icon={<AboutUs/>} navigateTo={'CreateCv'} params={{ type: 'create' }}/>
                 <CvSection title={'Company'} icon={<AboutUs/>} navigateTo={'CompanyList'}/>
+                <CvSection title={'Applied Job'} icon={<AboutUs/>} navigateTo={'FavoriteJob'} params={{
+                    title: 'Manager jobs',
+                    desc: 'Challenger your career!',
+                    fetcherKey: 'applied-job',
+                    apiFetcher: jobApi.getAppliedJob,
+                    type: 'APPLY'
+                }}/>
             </View>
         </ScreenLayout>
     )

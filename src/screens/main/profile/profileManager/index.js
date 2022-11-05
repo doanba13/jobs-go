@@ -38,7 +38,7 @@ export const ProfileManager = () => {
                         icon={<UserFill/>}
                         navigateTo={'UpdateProfile'}
                         params={{ data }}/>
-                    <ProfileOption title={'Favorite Jobs'} icon={<Heart/>} navigateTo={'FavoriteJob'}/>
+                    <ProfileOption title={'Favorite Jobs'} icon={<Heart/>} navigateTo={'FavoriteJobsList'}/>
                     <ProfileOption title={'About Us'} icon={<AboutUs/>} navigateTo={'AboutUs'}/>
                     <ProfileOption title={'Buy Premium'} icon={<Heart/>}/>
                     <ProfileOption title={'To to..., idk'} icon={<Heart/>}/>

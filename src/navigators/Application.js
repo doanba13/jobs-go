@@ -3,7 +3,7 @@ import {
     AppliedJobs, AwardSection,
     Catalog, CreateCV, EducationSection, ExperienceSection, FavoriteJob, HomeCv,
     HomeScreen, JobDetail, ListCV, ProfileManager, SearchFilter, SearchResult, SkillsSection,
-    SuggestedJob, UpdateProfile, CVProfile, Certification, CvDetail, ApplyJob
+    SuggestedJob, UpdateProfile, CVProfile, Certification, CvDetail, ApplyJob, FavoriteJobList
 } from 'screens/main';
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
@@ -61,7 +61,7 @@ export const ApplicationNavigator = () => {
                         <Stack.Screen name="ApplyJob" component={ApplyJob}/>
                         <Stack.Screen name="CompanyList" component={CompanyList}/>
                         <Stack.Screen name="CompanyDetail" component={CompanyDetail}/>
-                        <Stack.Screen name="CompanyJob" component={CompanyJobs}/>
+                        <Stack.Screen name="CompanyJobs" component={CompanyJobs}/>
                     </React.Fragment>
                     : <React.Fragment>
                         <Stack.Screen name="Login" component={LoginScreen}/>
@@ -97,8 +97,8 @@ const TabBarNavigation = () => {
                 }}
             />
             <Tab.Screen
-                name="AppliedJobs"
-                component={FavoriteJob}
+                name="FavoriteJobsList"
+                component={FavoriteJobList}
                 options={{
                     tabBarIcon: ({
                                      color,

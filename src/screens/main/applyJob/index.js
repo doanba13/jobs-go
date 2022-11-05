@@ -7,6 +7,7 @@ import { LoadingScreen } from 'components';
 import Modal from 'react-native-modal';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Close } from 'assets';
+import Toast from 'react-native-simple-toast';
 
 export const ApplyJob = ({
                              route,
@@ -20,12 +21,18 @@ export const ApplyJob = ({
         data,
         error,
         mutate: applyJobHandler
-    } = useMutation(jobApi.applyJob)
+    } = useMutation(jobApi.applyJob, {
+        onSuccess: () => {
+            Toast.show('Success!');
+            setIsVisible(false);
+            navigation.navigate('JobDetail', { id: jobId });
+        }
+    })
 
     const {
         data: resData,
         isLoading
-    } = useQuery('list-all-cv', cvApi.listAllCv);
+    } = useQuery(['list-all-cv', jobId], cvApi.listAllCv);
 
     const onApplyJob = () => {
         const data = new FormData();
@@ -36,10 +43,6 @@ export const ApplyJob = ({
 
         applyJobHandler(data)
     }
-
-    useEffect(() => {
-        console.log(data, error)
-    }, [data, error])
 
     return (
         <ScreenLayout title={'Your CV'} desc={'Select your CV to apply!'} contentHeight={'100%'} notFooter>

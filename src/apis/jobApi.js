@@ -11,6 +11,10 @@ export const jobApi = {
         const { data } = await axios.get('/job/job-high-salary');
         return data
     },
+    getAppliedJob: async () => {
+        const { data } = await axios.get('/job/get-job-applies?type=0');
+        return data
+    },
     getItJob: async () => {
         const { data } = await axios.get('/job/job-it');
         return data
@@ -25,6 +29,18 @@ export const jobApi = {
     },
     searchJob: async (query) => {
         const { data } = await axios.get(`/job/get-all?${query}`);
+        return data
+    },
+    favoriteJob: async (id) => {
+        const { success } = await axios.post(`/job/favorite/${id}`);
+        return success
+    },
+    unFavoriteJob: async (id) => {
+        const { success } = await axios.post(`/job/unfavorite/${id}`);
+        return success
+    },
+    getFavoriteJob: async () => {
+        const { data } = await axios.get('/job/get-job-favorite');
         return data
     },
 

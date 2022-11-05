@@ -1,14 +1,15 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { Text, View } from 'react-native-ui-lib';
 import { Location, Character3 } from 'assets';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { boxWithShadow } from 'utilities/boxShadow';
 import { Colors } from 'assets/Colors';
 import { StyledButton } from 'screens/components';
-import { LoadingScreen, Modal } from 'components';
-import { randomCatalog } from 'utilities';
-import { useQuery } from 'react-query';
+import { LoadingScreen } from 'components';
+import { useMutation, useQuery } from 'react-query';
 import { jobApi } from 'apis';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useFavoriteJob } from 'utilities';
 
 const convertSalary = (from, to) => {
     const convertedFrom = from.toString().slice(0, from.toString().length - 6) || 'Up to';
@@ -21,8 +22,14 @@ export const JobDetail = ({
                               navigation
                           }) => {
     const [tab, setTab] = useState(1);
-    const Icon = useMemo(() => randomCatalog(), [])
     const { id } = route.params;
+
+    const {
+        onFavoriteClick,
+        isFav
+    } = useFavoriteJob(id);
+
+    console.log(isFav)
 
     const {
         data,
@@ -35,12 +42,17 @@ export const JobDetail = ({
             {data &&
                 <View backgroundColor={'#f5f5f5'} height={'100%'}>
                     <View style={styles.container}>
-                        <View paddingB-40 width={'100%'}>
+                        <View paddingB-40 width={'100%'} row center>
                             <View width={'70%'}>
-                                <Text style={{ width: '100%' }} textBlack fs24 font-extraBold>{data.title}</Text>
+                                <Text style={{ width: '100%' }} numberOfLines={2} textBlack fs24
+                                      font-extraBold>{data.title}</Text>
                                 <Text black50 fs16 font-bold>{data.company.name}</Text>
                             </View>
-                            <Icon style={styles.companyLogo}/>
+                            <View marginB-20 marginL-40 style={styles.companyLogo}>
+                                <TouchableOpacity onPress={onFavoriteClick}>
+                                    <Ionicons name={isFav ? 'heart' : 'heart-outline'} color={'red'} size={60}/>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                         <View row centerV marginB-20>
                             <Text style={styles.tag} font-medium textBlack>{data.quantity} employee</Text>
@@ -106,12 +118,7 @@ const styles = StyleSheet.create({
 
     },
     companyLogo: {
-        position: 'absolute',
-        right: 15,
-        top: 0,
-        transform: [{
-            scale: 1.7
-        }]
+        width: '20%'
     },
     infoContainer: {
         position: 'relative',
