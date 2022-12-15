@@ -6,3 +6,4 @@ export * from './catalog';
 export * from './profile';
 export * from './cvManage';
 export * from './applyJob';
+export * from './favoriteJob';

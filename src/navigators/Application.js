@@ -1,9 +1,27 @@
 import {
     AboutUs,
-    AppliedJobs, AwardSection,
-    Catalog, CreateCV, EducationSection, ExperienceSection, FavoriteJob, HomeCv,
-    HomeScreen, JobDetail, ListCV, ProfileManager, SearchFilter, SearchResult, SkillsSection,
-    SuggestedJob, UpdateProfile, CVProfile, Certification, CvDetail, ApplyJob
+    AppliedJobs,
+    AwardSection,
+    Catalog,
+    CreateCV,
+    EducationSection,
+    ExperienceSection,
+    FavoriteJob,
+    HomeCv,
+    HomeScreen,
+    JobDetail,
+    ListCV,
+    ProfileManager,
+    SearchFilter,
+    SearchResult,
+    SkillsSection,
+    SuggestedJob,
+    UpdateProfile,
+    CVProfile,
+    Certification,
+    CvDetail,
+    ApplyJob,
+    FavoritedJob,
 } from 'screens/main';
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
@@ -21,12 +39,12 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator()
+const Tab = createBottomTabNavigator();
 
 // @refresh reset
 export const ApplicationNavigator = () => {
     const { isLogged } = useAuth();
-    console.log(isLogged)
+    console.log(isLogged);
 
     useEffect(() => {
         SplashScreen.hide();
@@ -34,41 +52,81 @@ export const ApplicationNavigator = () => {
 
     return (
         <NavigationContainer ref={navigationRef}>
-            <StatusBar barStyle="light-content"/>
+            <StatusBar barStyle="light-content" />
             <Stack.Navigator
                 initialRouteName={'Home'}
                 screenOptions={{ headerShown: false }}
             >
-                {isLogged
-                    ? <React.Fragment>
-                        <Stack.Screen name="Suggest" component={SuggestedJob}/>
-                        <Stack.Screen name="Home" component={TabBarNavigation}/>
-                        <Stack.Screen name="SearchResult" component={SearchResult}/>
-                        <Stack.Screen name="SearchFilter" component={SearchFilter}/>
-                        <Stack.Screen name="JobDetail" component={JobDetail}/>
-                        <Stack.Screen name="FavoriteJob" component={FavoriteJob}/>
-                        <Stack.Screen name="AboutUs" component={AboutUs}/>
-                        <Stack.Screen name="UpdateProfile" component={UpdateProfile}/>
-                        <Stack.Screen name="Education" component={EducationSection}/>
-                        <Stack.Screen name="Skill" component={SkillsSection}/>
-                        <Stack.Screen name="Award" component={AwardSection}/>
-                        <Stack.Screen name="Experience" component={ExperienceSection}/>
-                        <Stack.Screen name="CreateCv" component={CreateCV}/>
-                        <Stack.Screen name="ListCv" component={ListCV}/>
-                        <Stack.Screen name="CVProfile" component={CVProfile}/>
-                        <Stack.Screen name="Certification" component={Certification}/>
-                        <Stack.Screen name="CvDetail" component={CvDetail}/>
-                        <Stack.Screen name="ApplyJob" component={ApplyJob}/>
-                        <Stack.Screen name="CompanyList" component={CompanyList}/>
-                        <Stack.Screen name="CompanyDetail" component={CompanyDetail}/>
-                        <Stack.Screen name="CompanyJob" component={CompanyJobs}/>
+                {isLogged ? (
+                    <React.Fragment>
+                        <Stack.Screen name="Suggest" component={SuggestedJob} />
+                        <Stack.Screen
+                            name="Home"
+                            component={TabBarNavigation}
+                        />
+                        <Stack.Screen
+                            name="SearchResult"
+                            component={SearchResult}
+                        />
+                        <Stack.Screen
+                            name="SearchFilter"
+                            component={SearchFilter}
+                        />
+                        <Stack.Screen name="JobDetail" component={JobDetail} />
+                        <Stack.Screen
+                            name="FavoriteJob"
+                            component={FavoriteJob}
+                        />
+                        <Stack.Screen name="AboutUs" component={AboutUs} />
+                        <Stack.Screen
+                            name="UpdateProfile"
+                            component={UpdateProfile}
+                        />
+                        <Stack.Screen
+                            name="Education"
+                            component={EducationSection}
+                        />
+                        <Stack.Screen name="Skill" component={SkillsSection} />
+                        <Stack.Screen name="Award" component={AwardSection} />
+                        <Stack.Screen
+                            name="Experience"
+                            component={ExperienceSection}
+                        />
+                        <Stack.Screen name="CreateCv" component={CreateCV} />
+                        <Stack.Screen name="ListCv" component={ListCV} />
+                        <Stack.Screen name="CVProfile" component={CVProfile} />
+                        <Stack.Screen
+                            name="Certification"
+                            component={Certification}
+                        />
+                        <Stack.Screen name="CvDetail" component={CvDetail} />
+                        <Stack.Screen name="ApplyJob" component={ApplyJob} />
+                        <Stack.Screen
+                            name="CompanyList"
+                            component={CompanyList}
+                        />
+                        <Stack.Screen
+                            name="CompanyDetail"
+                            component={CompanyDetail}
+                        />
+                        <Stack.Screen
+                            name="CompanyJob"
+                            component={CompanyJobs}
+                        />
                     </React.Fragment>
-                    : <React.Fragment>
-                        <Stack.Screen name="Login" component={LoginScreen}/>
-                        <Stack.Screen name="Register" component={RegisterScreen}/>
-                        <Stack.Screen name="ForgotPassword" component={ForgotPassword}/>
+                ) : (
+                    <React.Fragment>
+                        <Stack.Screen name="Login" component={LoginScreen} />
+                        <Stack.Screen
+                            name="Register"
+                            component={RegisterScreen}
+                        />
+                        <Stack.Screen
+                            name="ForgotPassword"
+                            component={ForgotPassword}
+                        />
                     </React.Fragment>
-                }
+                )}
             </Stack.Navigator>
         </NavigationContainer>
     );
@@ -88,23 +146,25 @@ const TabBarNavigation = () => {
                 name="HomeScreen"
                 component={HomeScreen}
                 options={{
-                    tabBarIcon: ({
-                                     color,
-                                     size
-                                 }) => (
-                        <Ionicons name={'home-sharp'} size={size} color={color}/>
+                    tabBarIcon: ({ color, size }) => (
+                        <Ionicons
+                            name={'home-sharp'}
+                            size={size}
+                            color={color}
+                        />
                     ),
                 }}
             />
             <Tab.Screen
                 name="AppliedJobs"
-                component={FavoriteJob}
+                component={FavoritedJob}
                 options={{
-                    tabBarIcon: ({
-                                     color,
-                                     size
-                                 }) => (
-                        <Ionicons name={'heart-sharp'} size={size} color={color}/>
+                    tabBarIcon: ({ color, size }) => (
+                        <Ionicons
+                            name={'heart-sharp'}
+                            size={size}
+                            color={color}
+                        />
                     ),
                 }}
             />
@@ -112,11 +172,8 @@ const TabBarNavigation = () => {
                 name="CV"
                 component={HomeCv}
                 options={{
-                    tabBarIcon: ({
-                                     color,
-                                     size
-                                 }) => (
-                        <Ionicons name="list-sharp" color={color} size={size}/>
+                    tabBarIcon: ({ color, size }) => (
+                        <Ionicons name="list-sharp" color={color} size={size} />
                     ),
                 }}
             />
@@ -124,14 +181,15 @@ const TabBarNavigation = () => {
                 name="Profile"
                 component={ProfileManager}
                 options={{
-                    tabBarIcon: ({
-                                     color,
-                                     size
-                                 }) => (
-                        <Ionicons name="person-sharp" color={color} size={size}/>
+                    tabBarIcon: ({ color, size }) => (
+                        <Ionicons
+                            name="person-sharp"
+                            color={color}
+                            size={size}
+                        />
                     ),
                 }}
             />
         </Tab.Navigator>
-    )
-}
+    );
+};

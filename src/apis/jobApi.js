@@ -1,37 +1,52 @@
 import { axios } from 'libs';
 
-const jsonType = { headers: { 'Content-Type': 'application/json' }, }
+const jsonType = { headers: { 'Content-Type': 'application/json' } };
 
 export const jobApi = {
     getAllJob: async () => {
         const { data } = await axios.get('/job/get-all?position_id=1');
-        return data
+        return data;
     },
     getHotJob: async () => {
         const { data } = await axios.get('/job/job-high-salary');
-        return data
+        return data;
     },
     getItJob: async () => {
         const { data } = await axios.get('/job/job-it');
-        return data
+        return data;
     },
     getManagerJob: async () => {
         const { data } = await axios.get('/job/job-manager');
-        return data
+        return data;
     },
     getInternJob: async () => {
         const { data } = await axios.get('/job/job-internship');
-        return data
+        return data;
     },
-    searchJob: async (query) => {
+    searchJob: async query => {
         const { data } = await axios.get(`/job/get-all?${query}`);
-        return data
+        return data;
     },
 
-    getjobDetail: async (id) => {
+    getjobDetail: async id => {
         const data = await axios.get(`/job/get-by-id/${id}`, jsonType);
-        return data
+        return data;
     },
-    applyJob: async (data) => axios.post('/job/apply', data, { headers: { 'Content-Type': 'multipart/form-data' }, })
 
-}
+    applyJob: async data =>
+        axios.post('/job/apply', data, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        }),
+
+    getJobFavorite: async query => {
+        const { data } = await axios.get('/job/get-job-favorite');
+        return data;
+    },
+
+    getJobApplied: async query => {
+        const listJob = { jobs: [] };
+        const { data } = await axios.get('/job/get-job-applies');
+        listJob.jobs = data;
+        return listJob;
+    },
+};
