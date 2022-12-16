@@ -22,42 +22,61 @@ export const ProfileManager = () => {
 
     return (
         <>
-            {/* {isLoading ? <LoadingScreen/>
-                : <View backgroundColor={'#ffffff'} height={'100%'} paddingH-20>
+            {isLoading ? (
+                <LoadingScreen />
+            ) : (
+                <View backgroundColor={'#ffffff'} height={'100%'} paddingH-20>
                     <View paddingT-40 marginB-20 row centerV>
-                        <Image source={Images.logo} height={80} width={80}/>
+                        <Image source={Images.logo} height={80} width={80} />
                         <View marginL-5>
-                            <Text marginB-2 fs19 font-bold
-                                  textBlack>{`${data.first_name} ${data.last_name}`}</Text>
-                            <Text marginT-2 fs14 font-medium
-                                  black50>{data.email}</Text>
+                            <Text
+                                marginB-2
+                                fs19
+                                font-bold
+                                textBlack
+                            >{`${data.first_name} ${data.last_name}`}</Text>
+                            <Text marginT-2 fs14 font-medium black50>
+                                {data.email}
+                            </Text>
                         </View>
                     </View>
                     <ProfileOption
                         title={'Personal Data'}
-                        icon={<UserFill/>}
+                        icon={<UserFill />}
                         navigateTo={'UpdateProfile'}
-                        params={{ data }}/>
-                    <ProfileOption title={'Favorite Jobs'} icon={<Heart/>} navigateTo={'FavoriteJob'}/>
-                    <ProfileOption title={'About Us'} icon={<AboutUs/>} navigateTo={'AboutUs'}/>
-                    <ProfileOption title={'Buy Premium'} icon={<Heart/>}/>
-                    <ProfileOption title={'To to..., idk'} icon={<Heart/>}/>
+                        params={{ data }}
+                    />
+                    <ProfileOption
+                        title={'Favorite Jobs'}
+                        icon={<Heart />}
+                        navigateTo={'FavoriteJob'}
+                    />
+                    <ProfileOption
+                        title={'About Us'}
+                        icon={<AboutUs />}
+                        navigateTo={'AboutUs'}
+                    />
+                    <ProfileOption title={'Buy Premium'} icon={<Heart />} />
+                    <ProfileOption title={'To to..., idk'} icon={<Heart />} />
 
                     <View marginT-200>
-                        <StyledButton onPress={() => dispatch(onLogout())}
-                                      label={'Log out!'} bg={'#ffa39e'}
-                                      color={{ color: '#f1f4ff' }}
+                        <StyledButton
+                            onPress={() => dispatch(onLogout())}
+                            label={'Log out!'}
+                            bg={'#ffa39e'}
+                            color={{ color: '#f1f4ff' }}
                         />
                     </View>
-                </View>} */}
-            <View marginT-200>
+                </View>
+            )}
+            {/* <View marginT-200>
                 <StyledButton
                     onPress={() => dispatch(onLogout())}
                     label={'Log out!'}
                     bg={'#ffa39e'}
                     color={{ color: '#f1f4ff' }}
                 />
-            </View>
+            </View> */}
         </>
     );
 };
