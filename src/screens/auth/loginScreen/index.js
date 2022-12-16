@@ -15,26 +15,24 @@ import { ScreenLayout } from 'screens/components/layout';
 
 export const LoginScreen = () => {
     const dispatch = useDispatch();
-    const navi = useNavigation()
+    const navi = useNavigation();
 
     const {
         isLoading,
         mutate: loginHandler,
         data,
-    } = useMutation(accountApi.login)
+    } = useMutation(accountApi.login);
 
     const {
         handleSubmit,
         control,
-        formState: {
-            errors,
-        },
-        getValues
+        formState: { errors },
+        getValues,
     } = useForm({
         defaultValues: {
             email: __DEV__ ? 'ba.nguyen@gmail.com' : '',
-            password: __DEV__ ? 'Doanba13!@#' : '',
-        }
+            password: __DEV__ ? '123456' : '',
+        },
     });
 
     const onSubmit = values => {
@@ -48,19 +46,25 @@ export const LoginScreen = () => {
 
     useEffect(() => {
         if (data !== undefined) {
-            console.log(data, 'run')
-            dispatch(setUser({
-                email: getValues('email'),
-            }))
-            tokenStorage.set(data.token)
-            setTimeout(() => navi.navigate('Home'), 500)
+            console.log(data, 'run');
+            dispatch(
+                setUser({
+                    email: getValues('email'),
+                }),
+            );
+            tokenStorage.set(data.token);
+            setTimeout(() => navi.navigate('Home'), 500);
         }
-    }, [data])
+    }, [data]);
 
     return (
         <>
-            {isLoading && <LoadingScreen/>}
-            <ScreenLayout title={'Job Go!'} desc={'Finding your dream job.'} contentHeight={'100%'}>
+            {isLoading && <LoadingScreen />}
+            <ScreenLayout
+                title={'Job Go!'}
+                desc={'Finding your dream job.'}
+                contentHeight={'100%'}
+            >
                 <View paddingH-20 paddingT-20>
                     <Text fs30 textBlack font-extraBold>
                         Log in
@@ -69,14 +73,13 @@ export const LoginScreen = () => {
                         <Controller
                             control={control}
                             render={({
-                                         field: {
-                                             onChange,
-                                             onBlur,
-                                             value
-                                         }
-                                     }) => (
+                                field: { onChange, onBlur, value },
+                            }) => (
                                 <StyledInput
-                                    error={errors.username && errors.username.message}
+                                    error={
+                                        errors.username &&
+                                        errors.username.message
+                                    }
                                     Icon={User}
                                     placeholder={'Email'}
                                     onChange={onChange}
@@ -89,21 +92,20 @@ export const LoginScreen = () => {
                                 required: 'Email is required!',
                                 maxLength: {
                                     value: 30,
-                                    message: 'Email too long!'
+                                    message: 'Email too long!',
                                 },
                             }}
                         />
                         <Controller
                             control={control}
                             render={({
-                                         field: {
-                                             onChange,
-                                             onBlur,
-                                             value
-                                         }
-                                     }) => (
+                                field: { onChange, onBlur, value },
+                            }) => (
                                 <StyledInput
-                                    error={errors.password && errors.password.message}
+                                    error={
+                                        errors.password &&
+                                        errors.password.message
+                                    }
                                     Icon={User}
                                     type={'password'}
                                     placeholder={'Password'}
@@ -116,29 +118,51 @@ export const LoginScreen = () => {
                             rules={{
                                 required: 'Password is required!',
                                 minLength: {
-                                    value: 8,
-                                    message: 'Password must have more than 8 character!'
+                                    value: 6,
+                                    message:
+                                        'Password must have more than 6 character!',
                                 },
                                 maxLength: {
                                     value: 20,
-                                    message: 'Password too long!'
+                                    message: 'Password too long!',
                                 },
                             }}
                         />
                         <View>
-                            <TouchableOpacity onPress={() => navi.navigate('ForgotPassword')}>
-                                <Text style={style.navigateText} marginT-5 marginL-40 fs14 textBlack font-light>
+                            <TouchableOpacity
+                                onPress={() => navi.navigate('ForgotPassword')}
+                            >
+                                <Text
+                                    style={style.navigateText}
+                                    marginT-5
+                                    marginL-40
+                                    fs14
+                                    textBlack
+                                    font-light
+                                >
                                     Forgot password?
                                 </Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => navi.navigate('Register')}>
-                                <Text style={style.navigateText} marginT-5 marginL-40 fs14 textBlack font-light>
+                            <TouchableOpacity
+                                onPress={() => navi.navigate('Register')}
+                            >
+                                <Text
+                                    style={style.navigateText}
+                                    marginT-5
+                                    marginL-40
+                                    fs14
+                                    textBlack
+                                    font-light
+                                >
                                     Create new account!
                                 </Text>
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <StyledButton onPress={handleSubmit(onSubmit)} label={'Log in'}/>
+                    <StyledButton
+                        onPress={handleSubmit(onSubmit)}
+                        label={'Log in'}
+                    />
                 </View>
             </ScreenLayout>
         </>
